@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GOTRIP MX – Haz maletas, nosotros hacemos el resto</title>
+<meta name="description" content="Agencia de viajes digital mexicana. Circuitos, tours, cruceros, vuelos, hoteles y experiencias a la medida.">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════
+   GOTRIP MX — Single File Site
+   Logo fix: GO📍trip MX como HTML puro
+   ═══════════════════════════════════ */
+:root{
+  --p:#6F1CAF; --pd:#541981; --pl:#C191D7;
+  --t:#2BBFA4; --td:#1E9E87; --tl:#7DDDD0;
+  --dark:#0E0714; --ink:#1C1033;
+  --bg:#F7F4FC; --white:#fff; --muted:#7A6B90;
+  --border:rgba(111,28,175,0.12);
+  --nav-h:68px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+
+/* ─── LOGO — SOLUCION DEFINITIVA HTML PURO ─── */
+/* Funciona en cualquier browser sin SVG ni fuentes externas al renderizar */
+.logo-mark {
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+  font-family:'Nunito',sans-serif;
+  font-weight:900;
+  line-height:1;
+  white-space:nowrap;
+  flex-shrink:0;
+  text-decoration:none;
+}
+.logo-go   { color:var(--p); font-size:22px; letter-spacing:-0.5px; }
+.logo-pin  {
+  /* Pin turquesa hecho con CSS puro */
+  display:inline-flex;
+  align-items:flex-start;
+  justify-content:center;
+  width:20px;
+  height:24px;
+  position:relative;
+  margin:0 1px;
+  top:-1px;
+}
+.logo-pin::before {
+  content:'';
+  width:16px; height:16px;
+  background:var(--t);
+  border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  position:absolute;
+  top:0;
+  box-shadow:0 2px 8px rgba(43,191,164,0.5);
+}
+.logo-pin::after {
+  content:'';
+  width:6px; height:6px;
+  background:white;
+  border-radius:50%;
+  position:absolute;
+  top:5px;
+  left:5px;
+}
+.logo-trip { color:var(--p); font-size:22px; letter-spacing:-0.5px; }
+.logo-mx   { color:var(--muted); font-size:13px; font-weight:700; margin-left:4px; align-self:flex-end; margin-bottom:2px; }
+
+/* ─── NAVBAR ─── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 5%; height:var(--nav-h);
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  transition:box-shadow .3s;
+}
+nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.3px;transition:color .2s;text-transform:uppercase;white-space:nowrap;}
+.nav-links a:hover{color:var(--p);}
+.nav-cta{background:var(--t);color:white;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.nav-cta:hover{background:var(--td);transform:translateY(-1px);box-shadow:0 4px 16px rgba(43,191,164,0.4);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:var(--p);border-radius:2px;transition:all .3s;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(111,28,175,0.1);}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.mobile-menu a:last-child{border:none;color:var(--t);}
+.mobile-menu.open{display:flex;}
+@media(max-width:960px){.nav-links{display:none;}}
+@media(max-width:600px){.nav-cta{display:none;}.hamburger{display:flex;}}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh; display:flex; align-items:center;
+  position:relative; overflow:hidden; padding:100px 5% 60px;
+}
+.hero-bg{
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,var(--pd) 0%,var(--p) 45%,#9B3DD4 70%,#3B1A6B 100%);
+}
+.hero-bg::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(43,191,164,0.25) 0%,transparent 70%);top:-100px;right:-100px;border-radius:50%;}
+.hero-bg::after{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(193,145,215,0.2) 0%,transparent 70%);bottom:-50px;left:10%;border-radius:50%;}
+.hero-pattern{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(255,255,255,0.05)'/%3E%3C/svg%3E");background-size:40px 40px;}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(43,191,164,0.15);border:1px solid rgba(43,191,164,0.3);color:var(--tl);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;animation:fadeUp .6s ease both;}
+.hero-h1{font-family:'Nunito',sans-serif;font-size:clamp(32px,4.5vw,58px);font-weight:900;color:white;line-height:1.1;margin-bottom:20px;animation:fadeUp .6s ease .1s both;}
+.hero-h1 em{font-style:normal;color:var(--tl);}
+.hero-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:36px;max-width:440px;animation:fadeUp .6s ease .2s both;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .6s ease .3s both;}
+.btn-primary{background:var(--t);color:white;padding:14px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 20px rgba(43,191,164,0.4);border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--td);transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;padding:14px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(8px);transition:all .2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px);}
+.hero-stats{display:flex;gap:28px;margin-top:44px;animation:fadeUp .6s ease .4s both;}
+.hero-stat-num{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;color:white;}
+.hero-stat-num span{color:var(--tl);}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.55);}
+.hero-visual{position:relative;animation:fadeUp .8s ease .2s both;}
+.hero-cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.dest-card{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:4/3;border:1px solid rgba(255,255,255,0.1);transition:transform .3s;cursor:pointer;}
+.dest-card:hover{transform:scale(1.03);}
+.dest-card:first-child{grid-row:span 2;aspect-ratio:auto;}
+.dest-card-body{width:100%;height:100%;min-height:120px;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.dest-card:first-child .dest-card-body{min-height:240px;font-size:72px;}
+.dest-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,7,20,0.8) 0%,transparent 50%);}
+.dest-card-label{position:absolute;bottom:12px;left:12px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:white;display:flex;align-items:center;gap:4px;}
+.grad-europa{background:linear-gradient(135deg,#1a0533,#6F1CAF,#9B3DD4);}
+.grad-mexico{background:linear-gradient(135deg,#0a3a2a,#1a7a5a,#2BBFA4);}
+.grad-caribe{background:linear-gradient(135deg,#0a2a3a,#1a5a8a,#2B8FBF);}
+
+/* ─── SECTION SHARED ─── */
+.section{padding:80px 5%;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:12px;}
+.section-h2{font-family:'Nunito',sans-serif;font-size:clamp(26px,3.5vw,40px);font-weight:900;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.section-sub{font-size:15px;color:var(--muted);font-weight:300;line-height:1.7;max-width:520px;margin-bottom:48px;}
+
+/* ─── SERVICIOS ─── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;}
+.service-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:24px 16px;text-align:center;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--p),var(--t));opacity:0;transition:opacity .25s;}
+.service-card:hover::before{opacity:1;}
+.service-card:hover .s-icon{transform:scale(1.15);}
+.service-card:hover .s-name{color:white;}
+.s-icon{font-size:32px;margin-bottom:12px;transition:transform .25s;position:relative;z-index:1;}
+.s-name{font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--ink);transition:color .25s;position:relative;z-index:1;}
+
+/* ─── DESTINOS ─── */
+.destinos-bg{background:var(--bg);}
+.dest-filter{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;}
+.filter-btn{padding:8px 20px;border-radius:50px;font-size:13px;font-weight:700;border:2px solid var(--border);background:white;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
+.filter-btn.active,.filter-btn:hover{background:var(--p);color:white;border-color:var(--p);}
+.destinos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.dest-big{grid-column:span 2;}
+.destino-card{border-radius:20px;overflow:hidden;position:relative;cursor:pointer;transition:transform .3s,box-shadow .3s;min-height:260px;display:flex;align-items:center;justify-content:center;}
+.destino-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(111,28,175,0.15);}
+.destino-card .d-emoji{font-size:72px;position:relative;z-index:1;}
+.destino-card.small .d-emoji{font-size:48px;}
+.destino-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,7,20,0.85) 0%,rgba(14,7,20,0.1) 60%,transparent 100%);}
+.destino-content{position:absolute;bottom:0;left:0;right:0;padding:24px;}
+.d-region{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--tl);margin-bottom:6px;}
+.d-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:white;margin-bottom:8px;}
+.destino-card.small .d-name{font-size:17px;}
+.d-tag{display:inline-flex;align-items:center;gap:4px;background:rgba(43,191,164,0.2);border:1px solid rgba(43,191,164,0.3);color:var(--tl);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+
+/* ─── COTIZADOR ─── */
+.cotizador-bg{
+  background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);
+  position:relative;overflow:hidden;
+}
+.cotizador-bg::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(43,191,164,0.15) 0%,transparent 70%);top:-100px;right:-100px;border-radius:50%;pointer-events:none;}
+.cot-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.cot-header{text-align:center;margin-bottom:44px;}
+.cot-header .section-h2{color:white;}
+.cot-header .section-sub{color:rgba(255,255,255,0.7);margin:0 auto 0;}
+.cot-header .section-tag{color:var(--tl);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:span 3;}
+.form-group.two{grid-column:span 2;}
+.form-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.form-input,.form-select{padding:13px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.1);color:white;font-family:'Lato',sans-serif;font-size:14px;backdrop-filter:blur(8px);transition:all .2s;outline:none;}
+.form-input::placeholder{color:rgba(255,255,255,0.4);}
+.form-input:focus,.form-select:focus{border-color:var(--t);background:rgba(255,255,255,0.15);}
+.form-select option{background:var(--pd);color:white;}
+.form-submit{width:100%;padding:16px;background:var(--t);color:white;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(43,191,164,0.35);}
+.form-submit:hover{background:var(--td);transform:translateY(-2px);}
+.form-note{text-align:center;margin-top:14px;font-size:12px;color:rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;gap:6px;}
+
+/* ─── NOSOTROS ─── */
+.nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+.nos-visual{position:relative;}
+.nos-img-main{width:100%;border-radius:20px;background:linear-gradient(135deg,var(--pd),var(--p),var(--t));min-height:380px;display:flex;align-items:center;justify-content:center;font-size:90px;}
+.nos-float{position:absolute;bottom:-20px;right:-20px;background:white;border:3px solid var(--bg);border-radius:16px;padding:16px 20px;box-shadow:0 8px 32px rgba(111,28,175,0.15);}
+.nos-float-num{font-family:'Nunito',sans-serif;font-size:32px;font-weight:900;color:var(--p);line-height:1;}
+.nos-float-lbl{font-size:12px;color:var(--muted);}
+.nos-edit-hint{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--t);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.nos-edit-area{font-size:15px;color:var(--muted);font-weight:300;line-height:1.8;margin-bottom:28px;min-height:120px;border:2px dashed rgba(111,28,175,0.2);border-radius:12px;padding:16px;outline:none;transition:border-color .2s;background:var(--bg);}
+.nos-edit-area:focus{border-color:var(--p);}
+.nos-valores{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
+.valor-item{display:flex;align-items:flex-start;gap:10px;padding:14px;background:var(--bg);border-radius:12px;border:1px solid var(--border);}
+.valor-icon{font-size:20px;flex-shrink:0;}
+.valor-title{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:var(--ink);margin-bottom:2px;}
+.valor-desc{font-size:12px;color:var(--muted);font-weight:300;}
+
+/* ─── TESTIMONIOS ─── */
+.testi-bg{background:var(--bg);}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.testi-card{background:white;border:1px solid var(--border);border-radius:20px;padding:28px;position:relative;transition:all .25s;}
+.testi-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(111,28,175,0.1);}
+.testi-card::before{content:'"';position:absolute;top:16px;right:20px;font-family:'Nunito',sans-serif;font-size:72px;font-weight:900;color:var(--pl);opacity:.15;line-height:1;}
+.testi-stars{display:flex;gap:2px;color:var(--t);font-size:14px;margin-bottom:14px;}
+.testi-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;font-weight:300;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.testi-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--t));display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:white;flex-shrink:0;}
+.testi-name{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--ink);}
+.testi-dest{font-size:12px;color:var(--t);font-weight:600;}
+
+/* ─── ALIADOS ─── */
+.aliados-band{border-top:1px solid var(--border);padding:60px 5%;}
+.aliados-inner{max-width:1200px;margin:0 auto;text-align:center;}
+.aliados-label{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:32px;}
+.aliados-logos{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.al-logo{padding:12px 22px;background:var(--bg);border:1px solid var(--border);border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--muted);transition:all .2s;}
+.al-logo:hover{border-color:var(--p);color:var(--p);background:white;}
+
+/* ─── BLOG PREVIEW ─── */
+.blog-bg{background:var(--bg);}
+.blog-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:20px;}
+.blog-card{background:white;border-radius:20px;overflow:hidden;border:1px solid var(--border);transition:all .25s;cursor:pointer;}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(111,28,175,0.1);}
+.blog-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:40px;}
+.blog-card.feat .blog-img{height:220px;font-size:52px;}
+.blog-body{padding:20px;}
+.blog-cat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t);margin-bottom:8px;}
+.blog-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--ink);margin-bottom:8px;line-height:1.3;}
+.blog-card.feat .blog-title{font-size:20px;}
+.blog-excerpt{font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:14px;}
+.blog-meta{font-size:11px;color:var(--muted);display:flex;gap:10px;}
+
+/* ─── FAQ PREVIEW ─── */
+.faq-preview{padding:80px 5%;background:white;}
+.faq-preview-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:70px;align-items:start;}
+.faq-list{margin-top:8px;}
+.faq-item-p{background:var(--bg);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;}
+.faq-question-p{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;cursor:pointer;user-select:none;}
+.faq-q-text{font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--ink);}
+.faq-arrow-p{width:26px;height:26px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:all .3s;color:var(--p);border:1px solid var(--border);}
+.faq-item-p.open .faq-arrow-p{background:var(--p);color:white;border-color:var(--p);transform:rotate(180deg);}
+.faq-answer-p{display:none;padding:0 20px 16px;font-size:13px;color:var(--muted);line-height:1.7;font-weight:300;}
+.faq-item-p.open .faq-answer-p{display:block;}
+/* Chatbot widget preview */
+.chat-widget{background:linear-gradient(135deg,var(--dark),#1a0833);border-radius:20px;overflow:hidden;}
+.chat-w-header{background:linear-gradient(135deg,var(--pd),var(--p));padding:14px 18px;display:flex;align-items:center;gap:12px;}
+.chat-w-avatar{width:38px;height:38px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.chat-w-name{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:white;}
+.chat-w-status{font-size:11px;color:var(--tl);}
+.chat-msgs{padding:14px;min-height:200px;display:flex;flex-direction:column;gap:10px;}
+.cmsg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;}
+.cmsg-bot{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);border-radius:4px 12px 12px 12px;}
+.cmsg-user{background:var(--p);color:white;align-self:flex-end;border-radius:12px 4px 12px 12px;}
+.chat-chips-row{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 14px;}
+.chat-chip-w{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:6px 12px;font-size:12px;color:rgba(255,255,255,0.7);cursor:pointer;transition:all .15s;}
+.chat-chip-w:hover{background:rgba(111,28,175,0.4);color:white;}
+.chat-input-row-w{display:flex;gap:8px;padding:12px;background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.08);}
+.chat-input-w{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:8px 14px;font-size:13px;color:white;outline:none;font-family:'Lato',sans-serif;}
+.chat-input-w::placeholder{color:rgba(255,255,255,0.4);}
+.chat-send-w{width:32px;height:32px;background:var(--t);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;}
+
+/* ─── CTA FINAL ─── */
+.cta-final-bg{background:var(--dark);position:relative;overflow:hidden;}
+.cta-final-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 50%,rgba(111,28,175,0.4) 0%,transparent 70%),radial-gradient(ellipse 50% 50% at 80% 50%,rgba(43,191,164,0.15) 0%,transparent 70%);}
+.cta-final-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.cta-final-inner h2{font-family:'Nunito',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:900;color:white;margin-bottom:16px;line-height:1.2;}
+.cta-final-inner p{font-size:16px;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.7;margin-bottom:36px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+/* ─── FOOTER ─── */
+footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;}
+/* Footer logo same structure */
+.footer-logo-mark{display:inline-flex;align-items:center;gap:0;font-family:'Nunito',sans-serif;font-weight:900;line-height:1;margin-bottom:10px;}
+.footer-logo-mark .logo-go{color:white;font-size:24px;}
+.footer-logo-mark .logo-trip{color:white;font-size:24px;}
+.footer-logo-mark .logo-pin{width:22px;height:26px;margin:0 1px;position:relative;top:-1px;}
+.footer-logo-mark .logo-pin::before{background:var(--t);width:18px;height:18px;}
+.footer-logo-mark .logo-pin::after{width:7px;height:7px;top:5px;left:5px;}
+.footer-logo-mark .logo-mx{color:var(--muted);font-size:14px;font-weight:700;margin-left:4px;align-self:flex-end;margin-bottom:2px;}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:18px;}
+.footer-social{display:flex;gap:8px;}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;cursor:pointer;text-decoration:none;}
+.social-btn:hover{background:var(--p);border-color:var(--p);color:white;}
+.footer-col h4{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-links-f{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links-f a{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;transition:color .2s;}
+.footer-links-f a:hover{color:var(--tl);}
+.f-contact-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;}
+.f-contact-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
+.f-contact-text{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.5;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,0.2);}
+.footer-bottom a{color:rgba(255,255,255,0.3);transition:color .2s;}
+.footer-bottom a:hover{color:var(--tl);}
+
+/* ─── FLOAT BUTTONS ─── */
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;text-decoration:none;}
+.float-wa:hover{transform:scale(1.1);}
+/* Chatbot float */
+.float-chat-btn{position:fixed;bottom:28px;left:28px;z-index:200;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--t));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(111,28,175,0.4);cursor:pointer;transition:all .25s;}
+.float-chat-btn:hover{transform:scale(1.1);}
+.float-bubble{position:fixed;bottom:96px;left:28px;z-index:200;background:white;border:1px solid var(--border);border-radius:20px;width:320px;box-shadow:0 16px 48px rgba(111,28,175,0.2);display:none;flex-direction:column;overflow:hidden;}
+.float-bubble.open{display:flex;}
+.fb-header{background:linear-gradient(135deg,var(--pd),var(--p));padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.fb-info{display:flex;align-items:center;gap:10px;}
+.fb-av{width:32px;height:32px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.fb-name{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:white;}
+.fb-status{font-size:10px;color:var(--tl);}
+.fb-close{color:rgba(255,255,255,0.6);cursor:pointer;font-size:18px;line-height:1;padding:4px;}
+.fb-msgs{padding:12px;min-height:160px;max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;background:#F9F6FD;}
+.fb-msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
+.fb-msg-bot{background:white;border:1px solid var(--border);color:var(--ink);border-radius:4px 12px 12px 12px;}
+.fb-msg-user{background:var(--p);color:white;align-self:flex-end;border-radius:12px 4px 12px 12px;}
+.fb-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.fb-chip{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:6px 11px;font-size:11px;font-weight:600;color:var(--p);cursor:pointer;transition:all .15s;}
+.fb-chip:hover{background:var(--p);color:white;border-color:var(--p);}
+.fb-input-row{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border);background:white;}
+.fb-input{flex:1;border:1px solid var(--border);border-radius:20px;padding:8px 13px;font-size:13px;outline:none;font-family:'Lato',sans-serif;}
+.fb-input:focus{border-color:var(--p);}
+.fb-send{width:32px;height:32px;background:var(--t);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7);}}
+.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .nos-grid{grid-template-columns:1fr;}
+  .nos-visual{display:none;}
+  .destinos-grid{grid-template-columns:1fr 1fr;}
+  .dest-big{grid-column:span 2;}
+  .testi-grid{grid-template-columns:1fr 1fr;}
+  .blog-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .form-grid{grid-template-columns:1fr 1fr;}
+  .form-group.full{grid-column:span 2;}
+  .form-group.two{grid-column:span 2;}
+  .faq-preview-inner{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .destinos-grid{grid-template-columns:1fr;}
+  .dest-big{grid-column:span 1;}
+  .testi-grid{grid-template-columns:1fr;}
+  .nos-valores{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-group.full,.form-group.two{grid-column:span 1;}
+  .services-grid{grid-template-columns:repeat(3,1fr);}
+  .float-bubble{left:10px;right:10px;width:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav id="navbar">
+  <!-- LOGO DEFINITIVO: puro HTML/CSS, sin SVG ni fuentes especiales -->
+  <a href="#inicio" class="logo-mark">
+    <span class="logo-go">GO</span>
+    <span class="logo-pin"></span>
+    <span class="logo-trip">trip</span>
+    <span class="logo-mx">MX</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#destinos">Destinos</a></li>
+    <li><a href="#circuitos">Circuitos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#cotizador" class="nav-cta">✈ Cotizar viaje</a>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
+  <a href="#destinos" onclick="toggleMenu()">🌍 Destinos</a>
+  <a href="#circuitos" onclick="toggleMenu()">🗺️ Circuitos</a>
+  <a href="#nosotros" onclick="toggleMenu()">👥 Nosotros</a>
+  <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
+  <a href="#blog" onclick="toggleMenu()">📰 Blog</a>
+  <a href="#contacto" onclick="toggleMenu()">📞 Contacto</a>
+  <a href="#cotizador" onclick="toggleMenu()">✈ Cotizar viaje</a>
+</div>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tag">✦ Agencia de Viajes Digital · México</div>
+      <h1 class="hero-h1">Haz maletas,<br><em>nosotros hacemos</em><br>el resto.</h1>
+      <p class="hero-sub">Viajes a la medida, circuitos nacionales e internacionales, cruceros, tours y experiencias únicas. Desde México para el mundo.</p>
+      <div class="hero-btns">
+        <a href="#cotizador" class="btn-primary">✈ Cotiza tu viaje gratis</a>
+        <a href="#destinos" class="btn-ghost">🌍 Ver destinos</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">500<span>+</span></div><div class="hero-stat-label">Viajeros felices</div></div>
+        <div><div class="hero-stat-num">50<span>+</span></div><div class="hero-stat-label">Destinos</div></div>
+        <div><div class="hero-stat-num">24<span>/7</span></div><div class="hero-stat-label">Atención</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cards-grid">
+        <div class="dest-card grad-europa"><div class="dest-card-body">🏰</div><div class="dest-card-overlay"></div><div class="dest-card-label">📍 Europa</div></div>
+        <div class="dest-card grad-mexico"><div class="dest-card-body">🌮</div><div class="dest-card-overlay"></div><div class="dest-card-label">📍 México</div></div>
+        <div class="dest-card grad-caribe"><div class="dest-card-body">🏝️</div><div class="dest-card-overlay"></div><div class="dest-card-label">📍 Caribe</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SERVICIOS ═══════════════════ -->
+<section class="section" id="servicios">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Lo que hacemos</div>
+      <h2 class="section-h2">Todo para tu viaje,<br>en un solo lugar</h2>
+      <p class="section-sub">Desde vuelos y hospedaje hasta experiencias únicas. Nos encargamos de cada detalle.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card"><div class="s-icon">✈️</div><div class="s-name">Vuelos</div></div>
+      <div class="service-card"><div class="s-icon">🏨</div><div class="s-name">Hospedaje</div></div>
+      <div class="service-card"><div class="s-icon">🚢</div><div class="s-name">Cruceros</div></div>
+      <div class="service-card"><div class="s-icon">🗺️</div><div class="s-name">Circuitos</div></div>
+      <div class="service-card"><div class="s-icon">🎒</div><div class="s-name">Tours</div></div>
+      <div class="service-card"><div class="s-icon">🚗</div><div class="s-name">Renta de autos</div></div>
+      <div class="service-card"><div class="s-icon">🛡️</div><div class="s-name">Seguro viajero</div></div>
+      <div class="service-card"><div class="s-icon">🏡</div><div class="s-name">Rentas vacacionales</div></div>
+      <div class="service-card"><div class="s-icon">🚌</div><div class="s-name">Traslados</div></div>
+      <div class="service-card"><div class="s-icon">⭐</div><div class="s-name">Experiencias</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DESTINOS ═══════════════════ -->
+<section class="section destinos-bg" id="destinos">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag">Explora el mundo</div>
+      <h2 class="section-h2">Destinos que te van a encantar</h2>
+      <p class="section-sub">Europa, México y el mundo entero esperan por ti.</p>
+    </div>
+    <div class="dest-filter reveal" id="destFilter">
+      <button class="filter-btn active" onclick="filterDest('all',this)">Todos</button>
+      <button class="filter-btn" onclick="filterDest('europa',this)">Europa</button>
+      <button class="filter-btn" onclick="filterDest('mexico',this)">México</button>
+      <button class="filter-btn" onclick="filterDest('cruceros',this)">Cruceros</button>
+      <button class="filter-btn" onclick="filterDest('emergentes',this)">Emergentes</button>
+    </div>
+    <div class="destinos-grid reveal" id="destinosGrid">
+      <div class="destino-card dest-big grad-europa" data-region="europa"><div class="d-emoji">🏛️</div><div class="destino-overlay"></div><div class="destino-content"><div class="d-region">Europa</div><div class="d-name">Circuito Europa Clásica</div><span class="d-tag">✈ Desde $45,000 MXN</span></div></div>
+      <div class="destino-card small grad-mexico" data-region="mexico"><div class="d-emoji">🌊</div><div class="destino-overlay"></div><div class="destino-content"><div class="d-region">México</div><div class="d-name">Riviera Maya</div><span class="d-tag">✈ Desde $12,000 MXN</span></div></div>
+      <div class="destino-card small grad-caribe" data-region="cruceros"><div class="d-emoji">🚢</div><div class="destino-overlay"></div><div class="destino-content"><div class="d-region">Cruceros</div><div class="d-name">Caribe Mágico</div><span class="d-tag">✈ Desde $28,000 MXN</span></div></div>
+      <div class="destino-card small" style="background:linear-gradient(135deg,#1a1a0a,#5a4a1a);" data-region="emergentes"><div class="d-emoji">🌱</div><div class="destino-overlay"></div><div class="destino-content"><div class="d-region">Emergente</div><div class="d-name">Georgia & Armenia</div><span class="d-tag">🔥 Tendencia 2025</span></div></div>
+      <div class="destino-card small" style="background:linear-gradient(135deg,#1a0a0a,#5a1a3a);" data-region="asia"><div class="d-emoji">🌸</div><div class="destino-overlay"></div><div class="destino-content"><div class="d-region">Asia</div><div class="d-name">Japón Profundo</div><span class="d-tag">✈ Desde $55,000 MXN</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ COTIZADOR ═══════════════════ -->
+<section class="section cotizador-bg" id="cotizador">
+  <div class="cot-inner">
+    <div class="cot-header reveal">
+      <div class="section-tag">Sin costo · Sin compromiso</div>
+      <h2 class="section-h2">Cotiza tu viaje ahora</h2>
+      <p class="section-sub">Cuéntanos a dónde quieres ir y te enviamos una propuesta personalizada en menos de 24h.</p>
+    </div>
+    <div class="form-grid reveal">
+      <div class="form-group"><label class="form-label">Nombre completo</label><input type="text" class="form-input" placeholder="Tu nombre"></div>
+      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="correo@ejemplo.com"></div>
+      <div class="form-group"><label class="form-label">WhatsApp</label><input type="tel" class="form-input" placeholder="55 1234 5678"></div>
+      <div class="form-group two"><label class="form-label">¿A dónde quieres ir?</label><input type="text" class="form-input" placeholder="Italia, Cancún, Crucero Caribe, Japón…" id="destinoCot"></div>
+      <div class="form-group"><label class="form-label">Tipo de servicio</label><select class="form-select"><option>Paquete completo</option><option>Solo vuelos</option><option>Solo hotel</option><option>Circuito</option><option>Crucero</option><option>Viaje a la medida</option></select></div>
+      <div class="form-group"><label class="form-label">Fecha aproximada</label><input type="month" class="form-input"></div>
+      <div class="form-group"><label class="form-label">Viajeros</label><select class="form-select"><option>1 viajero</option><option>2 viajeros</option><option>3–4 viajeros</option><option>5 o más</option></select></div>
+      <div class="form-group full"><label class="form-label">Cuéntanos más</label><input type="text" class="form-input" placeholder="Luna de miel, primera vez, presupuesto…"></div>
+      <div class="form-group full"><button class="form-submit" onclick="submitCot()">✈ Quiero que me contacten</button></div>
+    </div>
+    <p class="form-note">🔒 Datos protegidos · Respondemos en menos de 24 horas</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ NOSOTROS ═══════════════════ -->
+<section class="section" id="nosotros">
+  <div class="section-inner">
+    <div class="nos-grid">
+      <div class="nos-visual reveal">
+        <div class="nos-img-main">🌍</div>
+        <div class="nos-float">
+          <div class="nos-float-num">100%</div>
+          <div class="nos-float-lbl">Digital & Personalizado</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-tag">Quiénes somos</div>
+        <h2 class="section-h2">La agencia que pone tu viaje en primer lugar</h2>
+        <div class="nos-edit-hint">✏️ Haz clic para personalizar este texto</div>
+        <div class="nos-edit-area" contenteditable="true" spellcheck="true" id="nosotrosText">En GOTRIP MX somos una agencia de viajes digital mexicana comprometida con hacer que cada experiencia sea exactamente como la imaginaste. Desde el Estado de México, atendemos viajeros de todo el país con servicio profesional, confiable y completamente personalizado. Nuestro equipo trabaja para que tú solo te preocupes de hacer la maleta — nosotros hacemos el resto.</div>
+        <div class="nos-valores">
+          <div class="valor-item"><div class="valor-icon">🏆</div><div><div class="valor-title">Experiencia probada</div><div class="valor-desc">Especialistas en destinos nacionales e internacionales</div></div></div>
+          <div class="valor-item"><div class="valor-icon">🤝</div><div><div class="valor-title">Atención personalizada</div><div class="valor-desc">Un asesor dedicado para cada viajero</div></div></div>
+          <div class="valor-item"><div class="valor-icon">🛡️</div><div><div class="valor-title">Viaje seguro</div><div class="valor-desc">Seguro de viajero y respaldo en destino 24/7</div></div></div>
+          <div class="valor-item"><div class="valor-icon">💻</div><div><div class="valor-title">100% digital</div><div class="valor-desc">Cotiza, paga y da seguimiento en línea</div></div></div>
+        </div>
+        <a href="#cotizador" class="btn-primary" style="display:inline-flex;">🌍 Planea tu viaje con nosotros</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TESTIMONIOS ═══════════════════ -->
+<section class="section testi-bg" id="resenas">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <div class="section-tag">Lo que dicen nuestros viajeros</div>
+      <h2 class="section-h2">Reseñas que nos llenan de orgullo</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">La organización fue impecable. Nuestro viaje a Italia de luna de miel superó todas las expectativas. Cada detalle estaba cuidado al máximo.</p><div class="testi-author"><div class="testi-av">LM</div><div><div class="testi-name">Laura & Miguel</div><div class="testi-dest">📍 Roma, Florencia & Venecia</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">Increíble experiencia de principio a fin. El equipo estuvo disponible en todo momento. Ya estamos planeando el siguiente viaje con ellos.</p><div class="testi-author"><div class="testi-av">CR</div><div><div class="testi-name">Carlos R.</div><div class="testi-dest">📍 Tokio & Kioto, Japón</div></div></div></div>
+      <div class="testi-card reveal"><div class="testi-stars">★★★★★</div><p class="testi-text">Viajé con toda la familia y fue perfecto. Los niños disfrutaron Disney y nosotros nos despreocupamos de todo. 100% recomendado.</p><div class="testi-author"><div class="testi-av">SF</div><div><div class="testi-name">Sandra F.</div><div class="testi-dest">📍 Orlando, Florida</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ALIADOS COMERCIALES ═══════════════════ -->
+<div class="aliados-band">
+  <div class="aliados-inner reveal">
+    <p class="aliados-label">Nuestros aliados comerciales</p>
+    <div class="aliados-logos">
+      <div class="al-logo">✈ Aeromexico</div>
+      <div class="al-logo">✈ United Airlines</div>
+      <div class="al-logo">✈ Iberia</div>
+      <div class="al-logo">✈ Air France</div>
+      <div class="al-logo">🏨 Marriott</div>
+      <div class="al-logo">🏨 Hilton</div>
+      <div class="al-logo">🚢 Royal Caribbean</div>
+      <div class="al-logo">🚢 MSC Cruceros</div>
+      <div class="al-logo">🚗 Hertz</div>
+      <div class="al-logo">🛡️ Assist Card</div>
+      <div class="al-logo">🛡️ AXA Travel</div>
+      <div class="al-logo">🌍 Amadeus</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="faq-preview" id="faq">
+  <div class="faq-preview-inner">
+    <div class="reveal">
+      <div class="section-tag">Respuestas rápidas</div>
+      <h2 class="section-h2">Preguntas frecuentes</h2>
+      <p class="section-sub" style="margin-bottom:8px;">Las dudas más comunes sobre nuestros servicios. Si no encuentras tu respuesta, ¡escríbenos!</p>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Cómo funciona el proceso de reserva?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">1. Cotizas gratis → 2. Recibimos tu solicitud → 3. Te enviamos propuesta personalizada en 24h → 4. Ajustes hasta que quede perfecto → 5. Confirmas con anticipo → ✈ ¡A viajar!</div></div>
+        <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Aceptan pagos a meses sin intereses?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">Sí, ofrecemos 3, 6 y 12 meses sin intereses con tarjetas BBVA, Banamex, Santander, HSBC y más. Monto mínimo $5,000 MXN.</div></div>
+        <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Necesito visa para Europa?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">Sí, los mexicanos requieren visa Schengen para Europa. Nosotros te asesoramos en todo el proceso: documentos, cita y formularios. Es parte de nuestro servicio.</div></div>
+        <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Qué pasa si necesito cancelar mi viaje?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">Las políticas dependen del proveedor. Con +60 días: reembolso del 80-100%. Recomendamos fuertemente contratar seguro de cancelación que cubre hasta el 100%.</div></div>
+        <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Tienen atención durante el viaje?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">Sí, tienes un número de WhatsApp de emergencias disponible 24/7 durante todo tu viaje. Si surge cualquier problema, nuestro equipo te asiste de inmediato.</div></div>
+        <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Cuánto tiempo antes debo reservar?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">Lo ideal es 2-3 meses. Para temporada alta y cruceros, 4-6 meses. También organizamos viajes de última hora según disponibilidad.</div></div>
+      </div>
+    </div>
+    <div class="chat-widget reveal">
+      <div class="chat-w-header">
+        <div class="chat-w-avatar">🤖</div>
+        <div><div class="chat-w-name">Asistente GOTRIP</div><div class="chat-w-status">● En línea · Responde al instante</div></div>
+      </div>
+      <div class="chat-msgs" id="widgetMsgs">
+        <div class="cmsg cmsg-bot">¡Hola! 👋 Soy el asistente de GOTRIP MX. Puedo responder tus dudas sobre destinos, precios, visas y más.</div>
+      </div>
+      <div class="chat-chips-row">
+        <span class="chat-chip-w" onclick="widgetChat('¿Cuánto cuesta Europa?')">💶 Precios Europa</span>
+        <span class="chat-chip-w" onclick="widgetChat('¿Necesito visa?')">📄 Visas</span>
+        <span class="chat-chip-w" onclick="widgetChat('¿Cómo pagar?')">💳 Pagos MSI</span>
+        <span class="chat-chip-w" onclick="widgetChat('Cruceros')">🚢 Cruceros</span>
+      </div>
+      <div class="chat-input-row-w">
+        <input type="text" class="chat-input-w" id="widgetInput" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')widgetSend()">
+        <button class="chat-send-w" onclick="widgetSend()">➤</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ BLOG ═══════════════════ -->
+<section class="section blog-bg" id="blog">
+  <div class="section-inner">
+    <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
+      <div><div class="section-tag">Inspiración para viajar</div><h2 class="section-h2" style="margin-bottom:0;">Blog de viajes GOTRIP</h2></div>
+      <a href="#blog" class="btn-primary" style="font-size:13px;padding:10px 20px;">Ver todos →</a>
+    </div>
+    <div class="blog-grid reveal">
+      <div class="blog-card feat"><div class="blog-img" style="background:linear-gradient(135deg,#1a0533,#6F1CAF);">🏛️</div><div class="blog-body"><div class="blog-cat">Guía de Destino</div><div class="blog-title">10 razones para visitar Europa en 2025: la guía definitiva para mexicanos</div><div class="blog-excerpt">Visa, vuelos, presupuesto y los destinos que están de moda este año.</div><div class="blog-meta"><span>📅 Dic 2024</span><span>⏱ 8 min</span></div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0a3a2a,#2BBFA4);">🏝️</div><div class="blog-body"><div class="blog-cat">Tips de Viaje</div><div class="blog-title">Los secretos de Cancún que los turistas no conocen</div><div class="blog-excerpt">Más allá de la zona hotelera: cenotes y pueblos auténticos.</div><div class="blog-meta"><span>📅 Nov 2024</span></div></div></div>
+      <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a1a0a,#6a4a1a);">🌱</div><div class="blog-body"><div class="blog-cat">Destinos Emergentes</div><div class="blog-title">Georgia: el destino del que todos hablarán en 2025</div><div class="blog-excerpt">Montañas del Cáucaso, vinos milenarios y hospitalidad única.</div><div class="blog-meta"><span>📅 Nov 2024</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA FINAL ═══════════════════ -->
+<section class="section cta-final-bg" id="contacto">
+  <div class="cta-final-inner reveal">
+    <h2>¿Listo para tu próxima aventura?</h2>
+    <p>Nuestro equipo está listo para armar el viaje de tus sueños. Cotización sin costo ni compromiso.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20me%20interesa%20cotizar%20un%20viaje" target="_blank" class="btn-primary">💬 WhatsApp</a>
+      <a href="mailto:ventas@gotripmx.com" class="btn-ghost">✉ ventas@gotripmx.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-mark">
+          <span class="logo-go">GO</span>
+          <span class="logo-pin"></span>
+          <span class="logo-trip">trip</span>
+          <span class="logo-mx">MX</span>
+        </div>
+        <p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a>
+          <a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a>
+          <a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a>
+          <a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul class="footer-links-f"><li><a href="#">Vuelos</a></li><li><a href="#">Hoteles</a></li><li><a href="#">Circuitos</a></li><li><a href="#">Cruceros</a></li><li><a href="#">Experiencias</a></li><li><a href="#">Seguro de viaje</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Destinos</h4>
+        <ul class="footer-links-f"><li><a href="#">Europa</a></li><li><a href="#">México</a></li><li><a href="#">Caribe</a></li><li><a href="#">Cruceros</a></li><li><a href="#">Asia</a></li><li><a href="#">Emergentes</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445<br>WhatsApp disponible</span></div>
+        <div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div>
+        <div class="f-contact-item"><span class="f-contact-icon">📍</span><span class="f-contact-text">Estado de México<br>100% digital</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 GOTRIP MX · Todos los derechos reservados</span>
+      <div style="display:flex;gap:16px;"><a href="#">Aviso de Privacidad</a><a href="#">Términos</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ FLOAT BUTTONS ═══════════════════ -->
+<a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20me%20interesa%20cotizar%20un%20viaje" target="_blank" class="float-wa">💬</a>
+<div class="float-chat-btn" onclick="document.getElementById('floatBubble').classList.toggle('open')">🤖</div>
+
+<div class="float-bubble" id="floatBubble">
+  <div class="fb-header">
+    <div class="fb-info"><div class="fb-av">🤖</div><div><div class="fb-name">Asistente GOTRIP</div><div class="fb-status">● En línea</div></div></div>
+    <div class="fb-close" onclick="document.getElementById('floatBubble').classList.remove('open')">✕</div>
+  </div>
+  <div class="fb-msgs" id="fbMsgs">
+    <div class="fb-msg fb-msg-bot">¡Hola! ¿En qué te puedo ayudar? Pregúntame sobre destinos, precios o visas 💜</div>
+    <div class="fb-chips">
+      <span class="fb-chip" onclick="fbChat('Europa')">🏛️ Europa</span>
+      <span class="fb-chip" onclick="fbChat('precios')">💰 Precios</span>
+      <span class="fb-chip" onclick="fbChat('visa')">📄 Visa</span>
+      <span class="fb-chip" onclick="fbChat('cruceros')">🚢 Cruceros</span>
+    </div>
+  </div>
+  <div class="fb-input-row">
+    <input type="text" class="fb-input" id="fbInput" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')fbSend()">
+    <button class="fb-send" onclick="fbSend()">➤</button>
+  </div>
+</div>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+// ── NAVBAR
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+
+// ── MOBILE MENU
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+
+// ── SCROLL REVEAL
+const observer = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ── FILTER DESTINOS
+function filterDest(region, btn){
+  document.querySelectorAll('#destFilter .filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#destinosGrid .destino-card').forEach(card=>{
+    if(region==='all'||card.dataset.region===region){card.style.display='flex';}
+    else{card.style.display='none';}
+  });
+}
+
+// ── FAQ ACCORDEON
+function toggleFaq(item){item.classList.toggle('open');}
+
+// ── COTIZADOR
+function submitCot(){alert('¡Gracias! Un asesor de GOTRIP MX te contactará en menos de 24 horas. ✈💜');}
+
+// ── KNOWLEDGE BASE DEL CHATBOT
+const KB = {
+  europa:'Los paquetes a Europa incluyen vuelo, hotel y traslados desde $38,000 MXN por persona (10 días). Destinos populares: España, Italia, Francia, Portugal. 🏛️',
+  precio:'Paquetes desde $8,500 MXN nacionales y desde $28,000 MXN internacionales. Depende del destino, duración y categoría. ¡Cotiza gratis! 💰',
+  visa:'Los mexicanos necesitan visa Schengen para Europa y visa para EE.UU./Canadá. Te asesoramos en el proceso completo. ¿A qué destino? 📄',
+  crucero:'Tenemos cruceros Caribe, Mediterráneo, Alaska y más desde $28,000 MXN (7 noches). Trabajamos con Royal Caribbean, MSC y Carnival. 🚢',
+  pago:'Aceptamos transferencia, tarjeta de crédito/débito y hasta 12 meses sin intereses. Sin pagos a cuentas personales. 💳',
+  seguro:'Trabajamos con Assist Card, AXA Travel y Allianz. Desde $500 MXN/persona. Cubre emergencias médicas, cancelación y equipaje. 🛡️',
+  japon:'Japón desde $55,000 MXN · 14 días · vuelo, hoteles y guía incluidos. Tokio, Kioto, Osaka y más. 🌸',
+  cancun:'Riviera Maya todo incluido desde $12,000 MXN · 5-7 días. Cancún, Playa del Carmen y Tulum. 🌊',
+  default:'Para darte la mejor respuesta, escríbenos por WhatsApp al <a href="https://wa.me/5215649139445" style="color:var(--t)">+52 56 4913 9445</a> o a ventas@gotripmx.com. Respondemos en menos de 2 horas. ✈'
+};
+function getKB(msg){
+  const m=msg.toLowerCase();
+  if(m.includes('europ')||m.includes('madrid')||m.includes('paris')||m.includes('italia'))return KB.europa;
+  if(m.includes('precio')||m.includes('costo')||m.includes('cuánto')||m.includes('cuanto'))return KB.precio;
+  if(m.includes('visa')||m.includes('pasaporte')||m.includes('documentos'))return KB.visa;
+  if(m.includes('crucero')||m.includes('barco')||m.includes('royal'))return KB.crucero;
+  if(m.includes('pago')||m.includes('meses')||m.includes('pagar')||m.includes('efectivo'))return KB.pago;
+  if(m.includes('seguro')||m.includes('emergencia')||m.includes('cancelar'))return KB.seguro;
+  if(m.includes('japón')||m.includes('japon')||m.includes('tokio'))return KB.japon;
+  if(m.includes('cancún')||m.includes('cancun')||m.includes('riviera')||m.includes('maya'))return KB.cancun;
+  return KB.default;
+}
+// Widget chat (FAQ section)
+function widgetChat(msg){
+  const box=document.getElementById('widgetMsgs');
+  box.innerHTML+=`<div class="cmsg cmsg-user">${msg}</div>`;
+  setTimeout(()=>{box.innerHTML+=`<div class="cmsg cmsg-bot">${getKB(msg)}</div>`;box.scrollTop=box.scrollHeight;},700);
+  box.scrollTop=box.scrollHeight;
+}
+function widgetSend(){const i=document.getElementById('widgetInput');if(!i.value.trim())return;widgetChat(i.value.trim());i.value='';}
+// Float bubble chat
+function fbChat(msg){
+  const box=document.getElementById('fbMsgs');
+  box.innerHTML+=`<div class="fb-msg fb-msg-user">${msg}</div>`;
+  setTimeout(()=>{box.innerHTML+=`<div class="fb-msg fb-msg-bot">${getKB(msg)}</div>`;box.scrollTop=box.scrollHeight;},700);
+  box.scrollTop=box.scrollHeight;
+}
+function fbSend(){const i=document.getElementById('fbInput');if(!i.value.trim())return;fbChat(i.value.trim());i.value='';}
+
+// ── NOSOTROS TEXT persistencia
+const nArea=document.getElementById('nosotrosText');
+if(localStorage.getItem('gotrip_nos'))nArea.innerText=localStorage.getItem('gotrip_nos');
+nArea.addEventListener('input',()=>localStorage.setItem('gotrip_nos',nArea.innerText));
+</script>
+</body>
+</html>
