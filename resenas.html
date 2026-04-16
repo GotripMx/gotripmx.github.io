@@ -1,0 +1,233 @@
+<!-- =============================================
+     GOTRIP MX — resenas.html
+     ============================================= -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reseñas de Clientes – GOTRIP MX</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6F1CAF;--pd:#541981;--pl:#C191D7;--t:#2BBFA4;--td:#1E9E87;--tl:#7DDDD0;--dark:#0E0714;--ink:#1C1033;--bg:#F7F4FC;--white:#ffffff;--muted:#7A6B90;--border:rgba(111,28,175,0.12);--r:16px;--nav-h:68px;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:var(--nav-h);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
+.nav-logo-text{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:1px;white-space:nowrap;}
+.nav-logo-text .go{color:var(--p);}.nav-logo-text .pin{color:var(--t);font-size:20px;margin:0 1px;}.nav-logo-text .trip{color:var(--p);}.nav-logo-text .mx{color:var(--muted);font-size:13px;margin-left:3px;font-weight:700;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.3px;transition:color .2s;text-transform:uppercase;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:var(--p);}
+.nav-cta{background:var(--t);color:white;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.nav-cta:hover{background:var(--td);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:var(--p);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:4px;}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.mobile-menu a:last-child{border:none;color:var(--t);}
+.mobile-menu.open{display:flex;}
+@media(max-width:960px){.nav-links{display:none;}}
+@media(max-width:600px){.nav-cta{display:none;}.hamburger{display:flex;}}
+.page-hero{padding:calc(var(--nav-h) + 60px) 5% 70px;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);}.breadcrumb a:hover{color:var(--tl);}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:white;margin-bottom:14px;line-height:1.15;}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.7);font-weight:300;max-width:500px;line-height:1.7;}
+.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* STATS BAR */
+.stats-bar{background:white;border-bottom:1px solid var(--border);padding:24px 5%;}
+.stats-bar-inner{max-width:1200px;margin:0 auto;display:flex;gap:40px;flex-wrap:wrap;align-items:center;}
+.stat-item{display:flex;align-items:center;gap:10px;}
+.stat-num-big{font-family:'Nunito',sans-serif;font-size:36px;font-weight:900;color:var(--p);line-height:1;}
+.stat-info{}
+.stat-label-top{font-size:13px;font-weight:700;color:var(--ink);}
+.stat-stars{color:var(--t);font-size:14px;}
+.stat-sep{width:1px;height:40px;background:var(--border);}
+@media(max-width:600px){.stat-sep{display:none;}}
+
+/* TESTI GRID */
+.testi-section{padding:60px 5%;background:var(--bg);}
+.testi-section-inner{max-width:1200px;margin:0 auto;}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:12px;}
+.section-h2{font-family:'Nunito',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.testi-masonry{columns:3;gap:20px;}
+.testi-card{background:white;border:1px solid var(--border);border-radius:20px;padding:24px;margin-bottom:20px;break-inside:avoid;position:relative;transition:all .25s;}
+.testi-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(111,28,175,0.1);}
+.testi-card::before{content:'"';position:absolute;top:14px;right:18px;font-family:'Nunito',sans-serif;font-size:64px;font-weight:900;color:var(--pl);opacity:.15;line-height:1;}
+.testi-stars{display:flex;gap:2px;color:var(--t);font-size:13px;margin-bottom:10px;}
+.testi-text{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;font-style:italic;margin-bottom:16px;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--p),var(--t));display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;color:white;flex-shrink:0;}
+.testi-name{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--ink);}
+.testi-dest{font-size:12px;color:var(--t);font-weight:600;}
+.testi-date{font-size:11px;color:var(--muted);}
+.testi-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:20px;margin-bottom:10px;}
+.tag-luna{background:rgba(111,28,175,0.1);color:var(--p);}
+.tag-familia{background:rgba(43,191,164,0.1);color:var(--td);}
+.tag-amigos{background:rgba(255,107,53,0.1);color:#e05a20;}
+.tag-solo{background:rgba(212,168,67,0.1);color:#a07c1e;}
+@media(max-width:900px){.testi-masonry{columns:2;}}
+@media(max-width:500px){.testi-masonry{columns:1;}}
+
+/* GALERÍA */
+.galeria-section{padding:60px 5%;background:white;}
+.galeria-inner{max-width:1200px;margin:0 auto;}
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px;}
+.galeria-item{border-radius:12px;overflow:hidden;aspect-ratio:1;position:relative;cursor:pointer;transition:transform .3s;}
+.galeria-item:hover{transform:scale(1.03);}
+.galeria-item:nth-child(1){grid-column:span 2;grid-row:span 2;aspect-ratio:auto;}
+.galeria-bg{width:100%;height:100%;min-height:120px;display:flex;align-items:center;justify-content:center;font-size:32px;}
+.galeria-item:nth-child(1) .galeria-bg{min-height:240px;font-size:52px;}
+@media(max-width:600px){.galeria-grid{grid-template-columns:1fr 1fr;}.galeria-item:nth-child(1){grid-column:span 2;}}
+
+/* DEJAR RESEÑA */
+.review-form-section{padding:60px 5%;background:var(--bg);}
+.review-form-inner{max-width:700px;margin:0 auto;text-align:center;}
+.review-form{background:white;border:1px solid var(--border);border-radius:20px;padding:36px;text-align:left;margin-top:32px;}
+.form-group{margin-bottom:20px;}
+.form-label{display:block;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-input,.form-textarea,.form-select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;background:white;}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(111,28,175,0.08);}
+.form-textarea{min-height:100px;resize:vertical;}
+.star-rating{display:flex;gap:8px;font-size:28px;cursor:pointer;}
+.star-rating span{transition:transform .1s;color:#ddd;}
+.star-rating span.active,.star-rating span:hover{color:var(--t);transform:scale(1.15);}
+.btn-submit{width:100%;padding:14px;background:var(--p);color:white;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all .2s;margin-top:8px;}
+.btn-submit:hover{background:var(--pd);transform:translateY(-2px);}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:500px){.form-2col{grid-template-columns:1fr;}}
+
+/* CTA BAND & FOOTER */
+.cta-band{background:linear-gradient(135deg,var(--pd),var(--p));padding:60px 5%;text-align:center;}
+.cta-band-inner{max-width:600px;margin:0 auto;}
+.cta-band h2{font-family:'Nunito',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:900;color:white;margin-bottom:14px;}
+.cta-band p{font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:28px;font-weight:300;line-height:1.7;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--t);color:white;padding:13px 26px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--td);transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:white;padding:13px 26px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px);}
+footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;}
+.footer-logo-row{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:3px;}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:18px;}
+.footer-social{display:flex;gap:8px;}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;cursor:pointer;text-decoration:none;}
+.social-btn:hover{background:var(--p);border-color:var(--p);color:white;}
+.footer-col h4{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;transition:color .2s;}
+.footer-links a:hover{color:var(--tl);}
+.f-contact-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;}
+.f-contact-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
+.f-contact-text{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.5;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,0.2);}
+.footer-bottom a{color:rgba(255,255,255,0.3);transition:color .2s;}
+.footer-bottom a:hover{color:var(--tl);}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr;}}
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;}
+.float-chat{position:fixed;bottom:28px;left:28px;z-index:200;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--t));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(111,28,175,0.4);cursor:pointer;transition:all .25s;}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7);}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-logo-text"><span class="go">GO</span><span class="pin">📍</span><span class="trip">trip</span><span class="mx">MX</span></div>
+  <ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="resenas.html" class="active">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+  <a href="contacto.html#cotizador" class="nav-cta">✈ Cotizar viaje</a>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">🏠 Inicio</a><a href="nosotros.html">👥 Nosotros</a><a href="circuitos.html">🗺️ Circuitos</a><a href="resenas.html">⭐ Reseñas</a><a href="blog.html">📰 Blog</a><a href="faq.html">❓ FAQ</a><a href="contacto.html">📞 Contacto</a><a href="contacto.html#cotizador">✈ Cotizar viaje</a></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span> › </span><span>Reseñas</span></div>
+    <h1>Lo que dicen nuestros viajeros</h1>
+    <p>Más de 500 familias, parejas y viajeros que confiaron en GOTRIP MX. Sus historias son nuestra mayor motivación.</p>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-bar-inner">
+    <div class="stat-item"><div class="stat-num-big">4.9</div><div class="stat-info"><div class="stat-label-top">Calificación promedio</div><div class="stat-stars">★★★★★</div></div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><div class="stat-num-big">500+</div><div class="stat-info"><div class="stat-label-top">Viajeros satisfechos</div><div style="font-size:12px;color:var(--muted)">y contando…</div></div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><div class="stat-num-big">98%</div><div class="stat-info"><div class="stat-label-top">Recomendarían GOTRIP</div><div style="font-size:12px;color:var(--muted)">a amigos y familia</div></div></div>
+    <div class="stat-sep"></div>
+    <div class="stat-item"><div class="stat-num-big">70%</div><div class="stat-info"><div class="stat-label-top">Clientes recurrentes</div><div style="font-size:12px;color:var(--muted)">vuelven a viajar con nosotros</div></div></div>
+  </div>
+</div>
+
+<section class="testi-section">
+  <div class="testi-section-inner">
+    <div class="reveal" style="margin-bottom:40px;">
+      <div class="section-tag">Opiniones verificadas</div>
+      <h2 class="section-h2">Reseñas de nuestros clientes</h2>
+    </div>
+    <div class="testi-masonry">
+      <div class="testi-card reveal"><span class="testi-tag tag-luna">💜 Luna de miel</span><div class="testi-stars">★★★★★</div><p class="testi-text">Nuestro viaje a Italia fue absolutamente perfecto. GOTRIP organizó cada hotel, traslado y tour con una atención al detalle increíble. Fue la luna de miel de nuestros sueños. No podría haber elegido mejor agencia.</p><div class="testi-author"><div class="testi-avatar">LM</div><div><div class="testi-name">Laura & Miguel T.</div><div class="testi-dest">📍 Roma · Florencia · Venecia</div><div class="testi-date">Octubre 2024</div></div></div></div>
+      <div class="testi-card reveal"><span class="testi-tag tag-familia">👨‍👩‍👧‍👦 Familia</span><div class="testi-stars">★★★★★</div><p class="testi-text">Viajamos 5 personas con niños a Disney y fue una experiencia sin estrés. Todo coordinado a la perfección: vuelos, hotel, transfers y hasta las entradas al parque. Mis hijos ya quieren volver.</p><div class="testi-author"><div class="testi-avatar">SF</div><div><div class="testi-name">Sandra F.</div><div class="testi-dest">📍 Orlando, Florida</div><div class="testi-date">Agosto 2024</div></div></div></div>
+      <div class="testi-card reveal"><span class="testi-tag tag-solo">🎒 Solo</span><div class="testi-stars">★★★★★</div><p class="testi-text">Japón parecía un destino complicado para viajar solo, pero con GOTRIP no tuve ningún problema. El itinerario era exactamente lo que quería y el soporte en destino fue excelente.</p><div class="testi-author"><div class="testi-avatar">CR</div><div><div class="testi-name">Carlos R.</div><div class="testi-dest">📍 Tokio · Kioto · Osaka</div><div class="testi-date">Noviembre 2024</div></div></div></div>
+      <div class="testi-card reveal"><span class="testi-tag tag-amigos">🧑‍🤝‍🧑 Amigos</span><div class="testi-stars">★★★★★</div><p class="testi-text">Fuimos 4 amigos a Europa y el circuito que nos armaron fue perfecto. Precios transparentes, sin sorpresas y con mucha flexibilidad para ajustar lo que queríamos. 100% recomendado.</p><div class="testi-author"><div class="testi-avatar">AP</div><div><div class="testi-name">Alejandra & Paulo</div><div class="testi-dest">📍 España · Francia · Portugal</div><div class="testi-date">Septiembre 2024</div></div></div></div>
+      <div class="testi-card reveal"><span class="testi-tag tag-luna">💜 Aniversario</span><div class="testi-stars">★★★★★</div><p class="testi-text">Celebramos nuestro 10° aniversario en Maldivas. GOTRIP consiguió una villa sobre el agua que jamás hubiéramos encontrado solos a ese precio. El detalle de la decoración de bienvenida fue hermoso.</p><div class="testi-author"><div class="testi-avatar">RG</div><div><div class="testi-name">Rodrigo & Gaby M.</div><div class="testi-dest">📍 Maldivas</div><div class="testi-date">Diciembre 2024</div></div></div></div>
+      <div class="testi-card reveal"><span class="testi-tag tag-familia">👨‍👩‍👧‍👦 Familia</span><div class="testi-stars">★★★★★</div><p class="testi-text">El crucero por el Caribe con mis papás fue espectacular. GOTRIP nos ayudó a elegir el camarote perfecto y los tours en cada puerto. Mi mamá ya tiene el siguiente viaje en mente.</p><div class="testi-author"><div class="testi-avatar">DL</div><div><div class="testi-name">Diana L.</div><div class="testi-dest">📍 Crucero Caribe · Royal Caribbean</div><div class="testi-date">Julio 2024</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="galeria-section">
+  <div class="galeria-inner">
+    <div class="reveal"><div class="section-tag">Momentos reales</div><h2 class="section-h2">Galería de viajeros GOTRIP</h2><p style="font-size:15px;color:var(--muted);font-weight:300;margin-top:8px;">Fotos compartidas por nuestros clientes desde sus destinos</p></div>
+    <div class="galeria-grid reveal">
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#1a0533,#6F1CAF);">🏛️</div></div>
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#0a3a2a,#2BBFA4);">🌊</div></div>
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#1a0a0a,#AF1C6F);">🏯</div></div>
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#0a1a3a,#1a5aAF);">🚢</div></div>
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#1a1a0a,#AF8A1C);">🏜️</div></div>
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#0a2a1a,#1E9E87);">🌴</div></div>
+      <div class="galeria-item"><div class="galeria-bg" style="background:linear-gradient(135deg,#1a0a1a,#8B35C8);">🌸</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="review-form-section">
+  <div class="review-form-inner reveal">
+    <div class="section-tag">¿Ya viajaste con nosotros?</div>
+    <h2 class="section-h2">Comparte tu experiencia</h2>
+    <p style="font-size:15px;color:var(--muted);font-weight:300;">Tu reseña ayuda a otros viajeros a tomar la mejor decisión. ¡Gracias por dedicar un momento!</p>
+    <div class="review-form">
+      <div class="form-2col">
+        <div class="form-group"><label class="form-label">Tu nombre</label><input type="text" class="form-input" placeholder="Como quieres aparecer"></div>
+        <div class="form-group"><label class="form-label">Destino visitado</label><input type="text" class="form-input" placeholder="Ej. Italia · 10 días"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Calificación</label><div class="star-rating" id="starRating"><span onclick="setRating(1)" data-star="1">★</span><span onclick="setRating(2)" data-star="2">★</span><span onclick="setRating(3)" data-star="3">★</span><span onclick="setRating(4)" data-star="4">★</span><span onclick="setRating(5)" data-star="5">★</span></div></div>
+      <div class="form-group"><label class="form-label">Tipo de viaje</label><select class="form-select"><option>Luna de miel / Aniversario</option><option>Familia</option><option>Amigos</option><option>Solo</option><option>Negocio + ocio</option></select></div>
+      <div class="form-group"><label class="form-label">Tu reseña</label><textarea class="form-textarea" placeholder="Cuéntanos tu experiencia: ¿qué fue lo que más te gustó? ¿recomendarías GOTRIP MX?"></textarea></div>
+      <button class="btn-submit" onclick="submitReview()">⭐ Publicar mi reseña</button>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band"><div class="cta-band-inner reveal"><h2>¿Quieres ser el siguiente viajero feliz?</h2><p>Únete a nuestra comunidad de viajeros. Cotiza sin compromiso y descubre el mundo con GOTRIP MX.</p><div class="cta-btns"><a href="https://wa.me/5215649139445" target="_blank" class="btn-primary">💬 WhatsApp</a><a href="contacto.html#cotizador" class="btn-ghost">✈ Cotizar ahora</a></div></div></div>
+
+<footer><div class="footer-inner"><div class="footer-top"><div><div class="footer-logo-row"><span style="color:white">GO</span><span style="color:var(--t)">📍</span><span style="color:white">trip</span><span style="color:var(--muted);font-size:14px;font-weight:700;margin-left:3px;">MX</span></div><p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p><div class="footer-social"><a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a><a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a><a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a><a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a></div></div><div class="footer-col"><h4>Servicios</h4><ul class="footer-links"><li><a href="#">Vuelos</a></li><li><a href="#">Hoteles</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="#">Cruceros</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul class="footer-links"><li><a href="nosotros.html">Nosotros</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445</span></div><div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div></div></div><div class="footer-bottom"><span>© 2025 GOTRIP MX · Todos los derechos reservados</span><div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a></div></div></div></footer>
+<a href="https://wa.me/5215649139445" target="_blank" class="float-wa">💬</a>
+<div class="float-chat" onclick="alert('Chat con IA próximamente.')">🤖</div>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+const observer=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+let rating=0;
+function setRating(n){rating=n;document.querySelectorAll('#starRating span').forEach((s,i)=>{s.classList.toggle('active',i<n);});}
+function submitReview(){if(!rating){alert('Por favor selecciona una calificación');return;}alert('¡Gracias por tu reseña! La publicaremos pronto. 💜');}
+</script>
+</body>
+</html>

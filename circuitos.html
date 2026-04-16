@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circuitos & Destinos – GOTRIP MX</title>
+<meta name="description" content="Descubre nuestros circuitos y paquetes de viaje: Europa, México, Caribe, Asia, Cruceros y Destinos Emergentes. GOTRIP MX.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6F1CAF;--pd:#541981;--pl:#C191D7;--t:#2BBFA4;--td:#1E9E87;--tl:#7DDDD0;--dark:#0E0714;--ink:#1C1033;--bg:#F7F4FC;--white:#ffffff;--muted:#7A6B90;--border:rgba(111,28,175,0.12);--r:16px;--nav-h:68px;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}img{max-width:100%;display:block;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:var(--nav-h);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
+.nav-logo-text{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:1px;white-space:nowrap;}
+.nav-logo-text .go{color:var(--p);}.nav-logo-text .pin{color:var(--t);font-size:20px;margin:0 1px;}.nav-logo-text .trip{color:var(--p);}.nav-logo-text .mx{color:var(--muted);font-size:13px;margin-left:3px;font-weight:700;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.3px;transition:color .2s;text-transform:uppercase;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:var(--p);}
+.nav-cta{background:var(--t);color:white;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.nav-cta:hover{background:var(--td);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:var(--p);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(111,28,175,0.1);}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.mobile-menu a:last-child{border:none;color:var(--t);}
+.mobile-menu.open{display:flex;}
+@media(max-width:960px){.nav-links{display:none;}}
+@media(max-width:600px){.nav-cta{display:none;}.hamburger{display:flex;}}
+
+.page-hero{padding:calc(var(--nav-h) + 60px) 5% 70px;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);}.breadcrumb a:hover{color:var(--tl);}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:white;margin-bottom:14px;line-height:1.15;}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.7);font-weight:300;max-width:500px;line-height:1.7;}
+.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FILTER BAR */
+.filter-bar{background:white;border-bottom:1px solid var(--border);position:sticky;top:var(--nav-h);z-index:90;padding:16px 5%;}
+.filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.filter-label{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+.filter-btn{padding:8px 18px;border-radius:50px;font-size:13px;font-weight:700;border:2px solid var(--border);background:white;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;white-space:nowrap;}
+.filter-btn.active,.filter-btn:hover{background:var(--p);color:white;border-color:var(--p);}
+
+/* PAQUETES */
+.paquetes-section{padding:60px 5%;background:var(--bg);}
+.paquetes-inner{max-width:1200px;margin:0 auto;}
+.region-title{display:flex;align-items:center;gap:14px;margin-bottom:24px;margin-top:48px;}
+.region-title:first-of-type{margin-top:0;}
+.region-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--pd),var(--p));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.region-name{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--ink);}
+.region-count{font-size:12px;color:var(--t);font-weight:700;background:rgba(43,191,164,0.1);border:1px solid rgba(43,191,164,0.2);padding:3px 10px;border-radius:20px;}
+
+.paquetes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:16px;}
+.paquete-card{
+  background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;
+  transition:all .3s;cursor:pointer;
+}
+.paquete-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(111,28,175,0.12);}
+.paquete-img{
+  height:200px;position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;font-size:64px;
+}
+.paquete-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.paquete-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,7,20,0.7) 0%,transparent 50%);}
+.paquete-badge{position:absolute;top:14px;left:14px;background:var(--t);color:white;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+.paquete-badge.hot{background:linear-gradient(135deg,#ff6b35,#f72585);}
+.paquete-badge.new{background:linear-gradient(135deg,var(--p),var(--pd));}
+.paquete-body{padding:20px;}
+.paquete-region{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t);margin-bottom:6px;}
+.paquete-name{font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:8px;line-height:1.3;}
+.paquete-desc{font-size:13px;color:var(--muted);font-weight:300;line-height:1.5;margin-bottom:14px;}
+.paquete-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.ptag{font-size:11px;padding:3px 10px;border-radius:20px;background:var(--bg);border:1px solid var(--border);color:var(--muted);font-weight:500;}
+.paquete-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border);}
+.paquete-precio{font-family:'Nunito',sans-serif;}
+.precio-desde{font-size:10px;color:var(--muted);font-weight:400;text-transform:uppercase;letter-spacing:1px;}
+.precio-monto{font-size:20px;font-weight:900;color:var(--p);}
+.precio-moneda{font-size:11px;color:var(--muted);margin-left:2px;}
+.btn-cotizar{background:var(--t);color:white;padding:8px 16px;border-radius:20px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;border:none;cursor:pointer;transition:all .2s;}
+.btn-cotizar:hover{background:var(--td);transform:translateY(-1px);}
+@media(max-width:800px){.paquetes-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.paquetes-grid{grid-template-columns:1fr;}}
+
+/* EMERGENTES HIGHLIGHT */
+.emergentes-band{background:linear-gradient(135deg,var(--dark),#1a0833);padding:60px 5%;}
+.emergentes-inner{max-width:1200px;margin:0 auto;}
+.emergentes-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px;}
+.emergentes-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:8px;}
+.emergentes-h2{font-family:'Nunito',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:900;color:white;line-height:1.2;}
+.emergente-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.emergente-card{
+  border-radius:16px;overflow:hidden;position:relative;min-height:220px;
+  display:flex;align-items:center;justify-content:center;font-size:52px;
+  cursor:pointer;transition:transform .3s;
+}
+.emergente-card:hover{transform:scale(1.03);}
+.emergente-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,7,20,0.85) 0%,rgba(14,7,20,0.1) 60%,transparent 100%);}
+.emergente-content{position:absolute;bottom:0;left:0;right:0;padding:18px;}
+.emergente-tag-pill{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tl);margin-bottom:6px;}
+.emergente-name{font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;color:white;}
+.emergente-trend{font-size:11px;color:rgba(255,255,255,0.6);margin-top:4px;}
+@media(max-width:700px){.emergente-grid{grid-template-columns:1fr 1fr;}}
+
+/* MEDIDA CTA */
+.medida-cta{padding:80px 5%;background:white;}
+.medida-inner{max-width:800px;margin:0 auto;text-align:center;}
+.medida-inner .section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:12px;}
+.medida-inner .section-h2{font-family:'Nunito',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.medida-inner p{font-size:15px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:36px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--t);color:white;padding:13px 26px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 18px rgba(43,191,164,0.35);cursor:pointer;border:none;}
+.btn-primary:hover{background:var(--td);transform:translateY(-2px);}
+.btn-outline{background:transparent;border:2px solid var(--p);color:var(--p);padding:11px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:all .2s;cursor:pointer;}
+.btn-outline:hover{background:var(--p);color:white;}
+
+/* FOOTER */
+footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;}
+.footer-logo-row{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:3px;}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:18px;}
+.footer-social{display:flex;gap:8px;}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;cursor:pointer;text-decoration:none;}
+.social-btn:hover{background:var(--p);border-color:var(--p);color:white;}
+.footer-col h4{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;transition:color .2s;}
+.footer-links a:hover{color:var(--tl);}
+.f-contact-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;}
+.f-contact-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
+.f-contact-text{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.5;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,0.2);}
+.footer-bottom a{color:rgba(255,255,255,0.3);transition:color .2s;}
+.footer-bottom a:hover{color:var(--tl);}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr;}}
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;}
+.float-wa:hover{transform:scale(1.1);}
+.float-chat{position:fixed;bottom:28px;left:28px;z-index:200;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--t));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(111,28,175,0.4);cursor:pointer;transition:all .25s;}
+.float-chat:hover{transform:scale(1.1);}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7);}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-logo-text"><span class="go">GO</span><span class="pin">📍</span><span class="trip">trip</span><span class="mx">MX</span></div>
+  <ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="circuitos.html" class="active">Circuitos</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+  <a href="contacto.html#cotizador" class="nav-cta">✈ Cotizar viaje</a>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">🏠 Inicio</a><a href="nosotros.html">👥 Nosotros</a><a href="circuitos.html">🗺️ Circuitos</a><a href="resenas.html">⭐ Reseñas</a><a href="blog.html">📰 Blog</a><a href="faq.html">❓ FAQ</a><a href="contacto.html">📞 Contacto</a><a href="contacto.html#cotizador">✈ Cotizar viaje</a></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span> › </span><span>Circuitos & Destinos</span></div>
+    <h1>Circuitos & Destinos</h1>
+    <p>Desde escapadas de playa hasta circuitos culturales en Europa. Explora nuestro catálogo y encuentra el viaje perfecto para ti.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">Filtrar:</span>
+    <button class="filter-btn active" onclick="filterRegion('all',this)">Todos</button>
+    <button class="filter-btn" onclick="filterRegion('europa',this)">🏛️ Europa</button>
+    <button class="filter-btn" onclick="filterRegion('mexico',this)">🌮 México</button>
+    <button class="filter-btn" onclick="filterRegion('caribe',this)">🏝️ Caribe</button>
+    <button class="filter-btn" onclick="filterRegion('cruceros',this)">🚢 Cruceros</button>
+    <button class="filter-btn" onclick="filterRegion('asia',this)">🌸 Asia</button>
+    <button class="filter-btn" onclick="filterRegion('emergentes',this)">🌱 Emergentes</button>
+  </div>
+</div>
+
+<!-- PAQUETES -->
+<section class="paquetes-section">
+  <div class="paquetes-inner">
+
+    <!-- EUROPA -->
+    <div class="region-block" data-region="europa">
+      <div class="region-title reveal"><div class="region-icon">🏛️</div><div class="region-name">Europa</div><span class="region-count">6 paquetes</span></div>
+      <div class="paquetes-grid">
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#1a0533,#6F1CAF,#9B3DD4);">🏛️<div class="paquete-img-overlay"></div><span class="paquete-badge">Popular</span></div>
+          <div class="paquete-body"><div class="paquete-region">Europa · Clásica</div><div class="paquete-name">Grand Tour Europa Clásica</div><div class="paquete-desc">Francia, Italia, España y Portugal en un circuito completo de 15 días con guía en español.</div><div class="paquete-tags"><span class="ptag">15 días</span><span class="ptag">Vuelo incluido</span><span class="ptag">Hotel ★★★★</span><span class="ptag">Guía español</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$45,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Grand Tour Europa Clásica')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#0a1a33,#1a3a8a,#2B5FBF);">🗼<div class="paquete-img-overlay"></div><span class="paquete-badge hot">🔥 Oferta</span></div>
+          <div class="paquete-body"><div class="paquete-region">Europa · Romance</div><div class="paquete-name">París & Roma en 10 días</div><div class="paquete-desc">La Torre Eiffel, el Coliseo y la mejor gastronomía europea. Ideal para parejas.</div><div class="paquete-tags"><span class="ptag">10 días</span><span class="ptag">Luna de miel</span><span class="ptag">Vuelo incluido</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$38,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('París & Roma en 10 días')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#1a1533,#3a2a6a,#6F1CAF);">🏰<div class="paquete-img-overlay"></div></div>
+          <div class="paquete-body"><div class="paquete-region">Europa · Aventura</div><div class="paquete-name">Escapada al Norte: Irlanda & Escocia</div><div class="paquete-desc">Castillos medievales, paisajes de película y la cultura celta en su máxima expresión.</div><div class="paquete-tags"><span class="ptag">12 días</span><span class="ptag">Paisajes</span><span class="ptag">Historia</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$42,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Irlanda & Escocia')">Cotizar</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÉXICO -->
+    <div class="region-block" data-region="mexico">
+      <div class="region-title reveal"><div class="region-icon">🌮</div><div class="region-name">México</div><span class="region-count">5 paquetes</span></div>
+      <div class="paquetes-grid">
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#0a3a2a,#1a7a5a,#2BBFA4);">🌊<div class="paquete-img-overlay"></div><span class="paquete-badge">Familia</span></div>
+          <div class="paquete-body"><div class="paquete-region">México · Playa</div><div class="paquete-name">Riviera Maya Todo Incluido</div><div class="paquete-desc">Cancún, Playa del Carmen y Tulum. El paraíso del Caribe mexicano al mejor precio.</div><div class="paquete-tags"><span class="ptag">5-7 días</span><span class="ptag">Todo incluido</span><span class="ptag">Familia</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$12,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Riviera Maya Todo Incluido')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#1a0a0a,#5a1a3a,#AF1C6F);">🌵<div class="paquete-img-overlay"></div><span class="paquete-badge new">Nuevo</span></div>
+          <div class="paquete-body"><div class="paquete-region">México · Cultural</div><div class="paquete-name">Ruta Mágica: CDMX & Oaxaca</div><div class="paquete-desc">Gastronomía, arte y cultura en dos de las ciudades más icónicas de México.</div><div class="paquete-tags"><span class="ptag">6 días</span><span class="ptag">Gastronomía</span><span class="ptag">Arte</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$8,500<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Ruta Mágica CDMX & Oaxaca')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#0a2a1a,#1a6a4a,#1a9a6a);">🏖️<div class="paquete-img-overlay"></div></div>
+          <div class="paquete-body"><div class="paquete-region">México · Aventura</div><div class="paquete-name">Los Cabos & Baja California</div><div class="paquete-desc">Arco del fin del mundo, avistamiento de ballenas y las mejores playas del Pacífico.</div><div class="paquete-tags"><span class="ptag">5 días</span><span class="ptag">Naturaleza</span><span class="ptag">Mar</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$14,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Los Cabos & Baja California')">Cotizar</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRUCEROS -->
+    <div class="region-block" data-region="cruceros">
+      <div class="region-title reveal"><div class="region-icon">🚢</div><div class="region-name">Cruceros</div><span class="region-count">4 paquetes</span></div>
+      <div class="paquetes-grid">
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#0a1a3a,#1a3a7a,#1a5aAF);">🚢<div class="paquete-img-overlay"></div><span class="paquete-badge">Popular</span></div>
+          <div class="paquete-body"><div class="paquete-region">Crucero · Caribe</div><div class="paquete-name">Caribe Mágico 7 noches</div><div class="paquete-desc">Royal Caribbean o MSC. Cozumel, Jamaica y las Bahamas en una semana de lujo flotante.</div><div class="paquete-tags"><span class="ptag">7 noches</span><span class="ptag">Todo a bordo</span><span class="ptag">3 puertos</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$28,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Caribe Mágico 7 noches')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#1a0533,#4a1a6a,#6F3CAF);">⚓<div class="paquete-img-overlay"></div></div>
+          <div class="paquete-body"><div class="paquete-region">Crucero · Mediterráneo</div><div class="paquete-name">Mediterráneo Clásico</div><div class="paquete-desc">Barcelona, Marsella, Génova, Roma y Atenas. Lo mejor del Mediterráneo desde el mar.</div><div class="paquete-tags"><span class="ptag">10 noches</span><span class="ptag">5 países</span><span class="ptag">Vuelo incluido</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$48,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Crucero Mediterráneo Clásico')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#0a2a3a,#1a4a6a,#1a6a8a);">🌊<div class="paquete-img-overlay"></div><span class="paquete-badge hot">🔥 Promo</span></div>
+          <div class="paquete-body"><div class="paquete-region">Crucero · Alaska</div><div class="paquete-name">Alaska: Glaciares & Naturaleza</div><div class="paquete-desc">Una experiencia única de glaciares, orcas y la majestuosa naturaleza del norte.</div><div class="paquete-tags"><span class="ptag">7 noches</span><span class="ptag">Naturaleza</span><span class="ptag">Aventura</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$35,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Crucero Alaska')">Cotizar</button></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASIA -->
+    <div class="region-block" data-region="asia">
+      <div class="region-title reveal"><div class="region-icon">🌸</div><div class="region-name">Asia</div><span class="region-count">3 paquetes</span></div>
+      <div class="paquetes-grid">
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#1a0a0a,#4a1a1a,#8a1a1a);">🏯<div class="paquete-img-overlay"></div><span class="paquete-badge new">Nuevo</span></div>
+          <div class="paquete-body"><div class="paquete-region">Asia · Japón</div><div class="paquete-name">Japón Profundo</div><div class="paquete-desc">Tokio, Kioto, Osaka y los pueblos tradicionales de la era Edo. Una experiencia transformadora.</div><div class="paquete-tags"><span class="ptag">14 días</span><span class="ptag">Cultural</span><span class="ptag">Gastronomía</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$55,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Japón Profundo')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#0a1a0a,#1a4a1a,#1a7a3a);">🌴<div class="paquete-img-overlay"></div></div>
+          <div class="paquete-body"><div class="paquete-region">Asia · Tailandia</div><div class="paquete-name">Tailandia & Islas</div><div class="paquete-desc">Bangkok, Chiang Mai y las islas de Phuket. La joya del Sudeste Asiático al mejor precio.</div><div class="paquete-tags"><span class="ptag">10 días</span><span class="ptag">Playa</span><span class="ptag">Cultura</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$38,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Tailandia & Islas')">Cotizar</button></div></div>
+        </div>
+        <div class="paquete-card reveal">
+          <div class="paquete-img" style="background:linear-gradient(135deg,#1a0a1a,#3a1a4a,#6a1a8a);">🕌<div class="paquete-img-overlay"></div></div>
+          <div class="paquete-body"><div class="paquete-region">Asia · Dubai</div><div class="paquete-name">Dubai & Abu Dhabi</div><div class="paquete-desc">Lujo, arquitectura futurista y el desierto árabe. El destino que más sorprende a los mexicanos.</div><div class="paquete-tags"><span class="ptag">7 días</span><span class="ptag">Lujo</span><span class="ptag">Desierto</span></div><div class="paquete-footer"><div class="paquete-precio"><div class="precio-desde">Desde</div><div class="precio-monto">$32,000<span class="precio-moneda">MXN</span></div></div><button class="btn-cotizar" onclick="cotizar('Dubai & Abu Dhabi')">Cotizar</button></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINOS EMERGENTES -->
+<section class="emergentes-band">
+  <div class="emergentes-inner">
+    <div class="emergentes-header reveal">
+      <div><div class="emergentes-tag">Tendencias 2025</div><div class="emergentes-h2">Destinos emergentes 🌱</div></div>
+      <a href="contacto.html#cotizador" style="background:var(--t);color:white;padding:10px 22px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;">Cotizar →</a>
+    </div>
+    <div class="emergente-grid">
+      <div class="emergente-card reveal" style="background:linear-gradient(135deg,#1a0533,#4a2a6a);">🏔️<div class="emergente-overlay"></div><div class="emergente-content"><div class="emergente-tag-pill">Cáucaso</div><div class="emergente-name">Georgia & Armenia</div><div class="emergente-trend">📈 +320% búsquedas 2025</div></div></div>
+      <div class="emergente-card reveal" style="background:linear-gradient(135deg,#0a2a1a,#1a5a3a);">🌿<div class="emergente-overlay"></div><div class="emergente-content"><div class="emergente-tag-pill">Centroamérica</div><div class="emergente-name">Costa Rica Salvaje</div><div class="emergente-trend">🌱 Turismo sostenible</div></div></div>
+      <div class="emergente-card reveal" style="background:linear-gradient(135deg,#1a1a0a,#4a3a1a);">🏜️<div class="emergente-overlay"></div><div class="emergente-content"><div class="emergente-tag-pill">África del Norte</div><div class="emergente-name">Marruecos Profundo</div><div class="emergente-trend">🔥 Destino del año</div></div></div>
+      <div class="emergente-card reveal" style="background:linear-gradient(135deg,#0a1a2a,#1a3a5a);">🏝️<div class="emergente-overlay"></div><div class="emergente-content"><div class="emergente-tag-pill">Océano Índico</div><div class="emergente-name">Islas Maldivas</div><div class="emergente-trend">💜 Lujo accesible</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA A MEDIDA -->
+<section class="medida-cta">
+  <div class="medida-inner reveal">
+    <div class="section-tag">¿No encontraste lo que buscas?</div>
+    <h2 class="section-h2">Armamos tu viaje a la medida</h2>
+    <p>Dinos tu destino, presupuesto y fechas. Nuestros especialistas diseñan un itinerario completamente personalizado para ti.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5215649139445?text=Hola!%20Quiero%20un%20viaje%20a%20la%20medida" target="_blank" class="btn-primary">💬 WhatsApp directo</a>
+      <a href="contacto.html#cotizador" class="btn-outline">📋 Formulario de cotización</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div><div class="footer-logo-row"><span style="color:white">GO</span><span style="color:var(--t)">📍</span><span style="color:white">trip</span><span style="color:var(--muted);font-size:14px;font-weight:700;margin-left:3px;">MX</span></div><p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p><div class="footer-social"><a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a><a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a><a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a><a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a></div></div>
+      <div class="footer-col"><h4>Destinos</h4><ul class="footer-links"><li><a href="#">Europa</a></li><li><a href="#">México</a></li><li><a href="#">Caribe</a></li><li><a href="#">Cruceros</a></li><li><a href="#">Asia</a></li><li><a href="#">Emergentes</a></li></ul></div>
+      <div class="footer-col"><h4>Empresa</h4><ul class="footer-links"><li><a href="nosotros.html">Nosotros</a></li><li><a href="nosotros.html#equipo">Equipo</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445</span></div><div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 GOTRIP MX · Todos los derechos reservados</span><div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a><a href="privacidad.html#terminos">Términos</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20me%20interesa%20cotizar%20un%20viaje" target="_blank" class="float-wa">💬</a>
+<div class="float-chat" onclick="alert('Chat con IA próximamente.')">🤖</div>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+const observer=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function filterRegion(region,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.region-block').forEach(block=>{
+    block.style.display=(region==='all'||block.dataset.region===region)?'block':'none';
+  });
+}
+function cotizar(paquete){
+  window.location.href=`contacto.html#cotizador?paquete=${encodeURIComponent(paquete)}`;
+}
+</script>
+</body>
+</html>

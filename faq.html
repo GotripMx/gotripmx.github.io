@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preguntas Frecuentes – GOTRIP MX</title>
+<meta name="description" content="Resolvemos todas tus dudas sobre reservas, pagos, cancelaciones, seguros de viaje y más. GOTRIP MX.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6F1CAF;--pd:#541981;--pl:#C191D7;--t:#2BBFA4;--td:#1E9E87;--tl:#7DDDD0;--dark:#0E0714;--ink:#1C1033;--bg:#F7F4FC;--white:#ffffff;--muted:#7A6B90;--border:rgba(111,28,175,0.12);--nav-h:68px;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:var(--nav-h);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
+.nav-logo-text{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:1px;white-space:nowrap;}
+.nav-logo-text .go{color:var(--p);}.nav-logo-text .pin{color:var(--t);font-size:20px;margin:0 1px;}.nav-logo-text .trip{color:var(--p);}.nav-logo-text .mx{color:var(--muted);font-size:13px;margin-left:3px;font-weight:700;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.3px;transition:color .2s;text-transform:uppercase;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:var(--p);}
+.nav-cta{background:var(--t);color:white;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.nav-cta:hover{background:var(--td);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:var(--p);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:4px;}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.mobile-menu a:last-child{border:none;color:var(--t);}
+.mobile-menu.open{display:flex;}
+@media(max-width:960px){.nav-links{display:none;}}
+@media(max-width:600px){.nav-cta{display:none;}.hamburger{display:flex;}}
+.page-hero{padding:calc(var(--nav-h) + 60px) 5% 70px;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);}.breadcrumb a:hover{color:var(--tl);}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:white;margin-bottom:14px;line-height:1.15;}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.7);font-weight:300;max-width:500px;line-height:1.7;}
+.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FAQ LAYOUT */
+.faq-section{padding:72px 5%;background:var(--bg);}
+.faq-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start;}
+.faq-nav{position:sticky;top:calc(var(--nav-h) + 24px);}
+.faq-nav-title{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.faq-nav-list{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.faq-nav-item a{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:600;color:var(--muted);transition:all .2s;}
+.faq-nav-item a:hover,.faq-nav-item a.active{background:var(--p);color:white;}
+.faq-nav-item .nav-icon{font-size:16px;flex-shrink:0;}
+
+.faq-content{}
+.faq-category{margin-bottom:48px;}
+.cat-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.cat-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--pd),var(--p));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.cat-title{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--ink);}
+
+.faq-item{background:white;border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;transition:box-shadow .2s;}
+.faq-item:hover{box-shadow:0 4px 16px rgba(111,28,175,0.08);}
+.faq-question{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;cursor:pointer;user-select:none;}
+.faq-q-text{font-family:'Nunito',sans-serif;font-size:15px;font-weight:700;color:var(--ink);line-height:1.3;}
+.faq-arrow{width:28px;height:28px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;transition:all .3s;color:var(--p);}
+.faq-item.open .faq-arrow{background:var(--p);color:white;transform:rotate(180deg);}
+.faq-answer{display:none;padding:0 20px 18px;font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;}
+.faq-item.open .faq-answer{display:block;}
+.faq-answer a{color:var(--t);font-weight:600;}
+.faq-answer strong{color:var(--ink);font-weight:700;}
+.faq-answer ul{margin:8px 0 8px 20px;display:flex;flex-direction:column;gap:6px;}
+
+@media(max-width:800px){.faq-inner{grid-template-columns:1fr;}.faq-nav{position:static;}}
+
+/* SEARCH */
+.faq-search-wrap{background:white;padding:24px 5%;border-bottom:1px solid var(--border);}
+.faq-search-inner{max-width:600px;margin:0 auto;position:relative;}
+.faq-search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--muted);}
+.faq-search{width:100%;padding:14px 16px 14px 48px;border:2px solid var(--border);border-radius:50px;font-size:14px;font-family:'Lato',sans-serif;outline:none;transition:border-color .2s;color:var(--ink);}
+.faq-search:focus{border-color:var(--p);box-shadow:0 0 0 4px rgba(111,28,175,0.08);}
+
+/* CHATBOT INLINE */
+.chatbot-section{padding:60px 5%;background:white;}
+.chatbot-inner{max-width:900px;margin:0 auto;}
+.chatbot-card{
+  background:linear-gradient(135deg,var(--dark),#1a0833);
+  border-radius:24px;padding:36px;
+  display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;
+}
+.chatbot-info{}
+.chatbot-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(43,191,164,0.15);border:1px solid rgba(43,191,164,0.3);color:var(--tl);padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.chatbot-title{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;color:white;margin-bottom:12px;line-height:1.2;}
+.chatbot-desc{font-size:14px;color:rgba(255,255,255,0.6);font-weight:300;line-height:1.7;margin-bottom:20px;}
+.chat-chips-grid{display:flex;flex-direction:column;gap:8px;}
+.chat-chip-inline{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;padding:10px 14px;
+  font-size:13px;color:rgba(255,255,255,0.7);
+  cursor:pointer;transition:all .2s;
+}
+.chat-chip-inline:hover{background:rgba(111,28,175,0.4);border-color:var(--pl);color:white;}
+.chip-icon{font-size:16px;flex-shrink:0;}
+
+.chat-demo{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;}
+.chat-demo-header{background:linear-gradient(135deg,var(--pd),var(--p));padding:12px 16px;display:flex;align-items:center;gap:10px;}
+.demo-avatar{width:32px;height:32px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.demo-name{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:white;}
+.demo-status{font-size:10px;color:var(--tl);}
+.chat-demo-messages{padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px;background:rgba(0,0,0,0.2);}
+.dmsg{max-width:85%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.5;}
+.dmsg-bot{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);border-radius:4px 12px 12px 12px;}
+.dmsg-user{background:var(--p);color:white;align-self:flex-end;border-radius:12px 4px 12px 12px;}
+.chat-demo-input{display:flex;gap:8px;padding:10px;background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.08);}
+.demo-input-field{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:8px 14px;font-size:12px;color:rgba(255,255,255,0.6);outline:none;font-family:'Lato',sans-serif;}
+.demo-send{width:30px;height:30px;background:var(--t);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;}
+@media(max-width:700px){.chatbot-card{grid-template-columns:1fr;}}
+
+/* CTA & FOOTER */
+.cta-band{background:linear-gradient(135deg,var(--pd),var(--p));padding:60px 5%;text-align:center;}
+.cta-band-inner{max-width:600px;margin:0 auto;}
+.cta-band h2{font-family:'Nunito',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:white;margin-bottom:12px;}
+.cta-band p{font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:28px;font-weight:300;line-height:1.7;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--t);color:white;padding:13px 26px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:all .2s;border:none;cursor:pointer;}
+.btn-primary:hover{background:var(--td);transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);color:white;padding:13px 26px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+.btn-ghost:hover{background:rgba(255,255,255,0.2);}
+footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;}
+.footer-logo-row{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:3px;}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:18px;}
+.footer-social{display:flex;gap:8px;}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;cursor:pointer;text-decoration:none;}
+.social-btn:hover{background:var(--p);border-color:var(--p);color:white;}
+.footer-col h4{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;transition:color .2s;}
+.footer-links a:hover{color:var(--tl);}
+.f-contact-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;}
+.f-contact-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
+.f-contact-text{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.5;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,0.2);}
+.footer-bottom a{color:rgba(255,255,255,0.3);transition:color .2s;}
+.footer-bottom a:hover{color:var(--tl);}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr;}}
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;}
+.float-chat{position:fixed;bottom:28px;left:28px;z-index:200;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--t));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(111,28,175,0.4);cursor:pointer;transition:all .25s;}
+/* floating chat bubble */
+.float-bubble{position:fixed;bottom:96px;left:28px;z-index:200;background:white;border:1px solid var(--border);border-radius:20px;width:320px;box-shadow:0 16px 48px rgba(111,28,175,0.2);display:none;flex-direction:column;overflow:hidden;}
+.float-bubble.open{display:flex;}
+.fb-header{background:linear-gradient(135deg,var(--pd),var(--p));padding:12px 16px;display:flex;align-items:center;justify-content:space-between;}
+.fb-info{display:flex;align-items:center;gap:10px;}
+.fb-avatar{width:32px;height:32px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.fb-name{font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;color:white;}
+.fb-status{font-size:10px;color:var(--tl);}
+.fb-close{color:rgba(255,255,255,0.6);cursor:pointer;font-size:18px;line-height:1;}
+.fb-msgs{padding:12px;min-height:180px;max-height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;background:#F9F6FD;}
+.fb-msg{max-width:85%;padding:9px 13px;border-radius:12px;font-size:13px;line-height:1.5;}
+.fb-msg-bot{background:white;border:1px solid var(--border);color:var(--ink);border-radius:4px 12px 12px 12px;}
+.fb-msg-user{background:var(--p);color:white;align-self:flex-end;border-radius:12px 4px 12px 12px;}
+.fb-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+.fb-chip{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:6px 11px;font-size:11px;font-weight:600;color:var(--p);cursor:pointer;transition:all .15s;}
+.fb-chip:hover{background:var(--p);color:white;border-color:var(--p);}
+.fb-input-row{display:flex;gap:8px;padding:10px;border-top:1px solid var(--border);background:white;}
+.fb-input{flex:1;border:1px solid var(--border);border-radius:20px;padding:8px 13px;font-size:13px;outline:none;font-family:'Lato',sans-serif;}
+.fb-input:focus{border-color:var(--p);}
+.fb-send{width:32px;height:32px;background:var(--t);border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:white;flex-shrink:0;}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7);}}
+@media(max-width:480px){.float-bubble{left:10px;right:10px;width:auto;}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-logo-text"><span class="go">GO</span><span class="pin">📍</span><span class="trip">trip</span><span class="mx">MX</span></div>
+  <ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html" class="active">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+  <a href="contacto.html#cotizador" class="nav-cta">✈ Cotizar viaje</a>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">🏠 Inicio</a><a href="nosotros.html">👥 Nosotros</a><a href="circuitos.html">🗺️ Circuitos</a><a href="resenas.html">⭐ Reseñas</a><a href="blog.html">📰 Blog</a><a href="faq.html">❓ FAQ</a><a href="contacto.html">📞 Contacto</a><a href="contacto.html#cotizador">✈ Cotizar viaje</a></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span> › </span><span>Preguntas Frecuentes</span></div>
+    <h1>Preguntas Frecuentes</h1>
+    <p>Resolvemos todas tus dudas antes de que las tengas. Si no encuentras tu respuesta, ¡escríbenos!</p>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="faq-search-wrap">
+  <div class="faq-search-inner">
+    <span class="faq-search-icon">🔍</span>
+    <input type="text" class="faq-search" placeholder="Busca tu pregunta… ej. ¿cómo pago?, ¿necesito visa?" id="faqSearch" oninput="searchFaq(this.value)">
+  </div>
+</div>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <!-- NAV LATERAL -->
+    <div class="faq-nav reveal">
+      <div class="faq-nav-title">Categorías</div>
+      <ul class="faq-nav-list">
+        <li class="faq-nav-item"><a href="#reservas" class="active"><span class="nav-icon">📋</span> Reservas</a></li>
+        <li class="faq-nav-item"><a href="#pagos"><span class="nav-icon">💳</span> Pagos</a></li>
+        <li class="faq-nav-item"><a href="#viaje"><span class="nav-icon">✈️</span> El viaje</a></li>
+        <li class="faq-nav-item"><a href="#seguro"><span class="nav-icon">🛡️</span> Seguro de viaje</a></li>
+        <li class="faq-nav-item"><a href="#cancelaciones"><span class="nav-icon">↩️</span> Cambios y cancelaciones</a></li>
+        <li class="faq-nav-item"><a href="#destinos"><span class="nav-icon">🌍</span> Destinos y visas</a></li>
+      </ul>
+    </div>
+
+    <!-- FAQ CONTENT -->
+    <div class="faq-content reveal" id="faqContent">
+
+      <!-- RESERVAS -->
+      <div class="faq-category" id="reservas">
+        <div class="cat-header"><div class="cat-icon">📋</div><div class="cat-title">Reservas</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Cómo funciona el proceso de reserva con GOTRIP MX?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">El proceso es sencillo:<ul><li><strong>1. Cotización:</strong> Nos compartes tu destino, fechas y número de viajeros.</li><li><strong>2. Propuesta personalizada:</strong> En menos de 24 horas te enviamos opciones a tu medida.</li><li><strong>3. Ajustes:</strong> Revisamos juntos el itinerario hasta que sea perfecto.</li><li><strong>4. Confirmación:</strong> Con un anticipo queda confirmada tu reserva.</li><li><strong>5. ¡A viajar!</strong> Te enviamos todos tus documentos de viaje por email.</li></ul>Puedes iniciar por <a href="https://wa.me/5215649139445" target="_blank">WhatsApp</a> o nuestro <a href="contacto.html#cotizador">formulario de cotización</a>.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Con cuánto tiempo de anticipación debo reservar?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Lo ideal es reservar con <strong>2 a 3 meses de anticipación</strong> para tener mejores precios y disponibilidad. Sin embargo, podemos organizar viajes de última hora (con menos de 30 días) para destinos con disponibilidad inmediata. Para cruceros y destinos muy populares en temporada alta, recomendamos reservar con 4-6 meses.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Pueden organizar viajes grupales o empresariales?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">¡Sí! Organizamos <strong>grupos desde 8 personas</strong> con cotizaciones especiales. Manejamos viajes de incentivos corporativos, grupos de amigos, viajes de graduación y más. Para grupos de 15+ personas tenemos tarifas preferenciales. <a href="https://wa.me/5215649139445?text=Hola,%20me%20interesa%20un%20viaje%20grupal" target="_blank">Escríbenos</a> para una propuesta especial.</div></div>
+      </div>
+
+      <!-- PAGOS -->
+      <div class="faq-category" id="pagos">
+        <div class="cat-header"><div class="cat-icon">💳</div><div class="cat-title">Pagos</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Cuáles son los métodos de pago aceptados?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Aceptamos:<ul><li>Transferencia bancaria (SPEI)</li><li>Tarjeta de crédito o débito (Visa, Mastercard, AMEX)</li><li>Pago en efectivo en OXXO o tiendas de conveniencia</li><li>PayPal</li><li>Meses sin intereses disponibles con tarjetas participantes</li></ul><strong>No pedimos pagos a cuentas personales.</strong> Todos los pagos son a cuentas verificadas de GOTRIP MX.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Se puede pagar a meses sin intereses?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Sí, ofrecemos <strong>3, 6 y 12 meses sin intereses</strong> con tarjetas de crédito participantes (BBVA, Banamex, Santander, HSBC y más). El monto mínimo para aplicar MSI es de $5,000 MXN. Consulta disponibilidad al momento de tu cotización.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Cuánto es el anticipo para confirmar una reserva?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">El anticipo varía según el tipo de viaje:<ul><li><strong>Paquetes nacionales:</strong> 30% del total</li><li><strong>Paquetes internacionales:</strong> 40-50% del total</li><li><strong>Cruceros:</strong> Depósito mínimo por cabina + resto 60 días antes de salida</li></ul>El saldo restante se paga antes de la fecha de viaje según el itinerario de pago acordado.</div></div>
+      </div>
+
+      <!-- EL VIAJE -->
+      <div class="faq-category" id="viaje">
+        <div class="cat-header"><div class="cat-icon">✈️</div><div class="cat-title">El viaje</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Qué incluye un paquete de viaje con GOTRIP MX?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Depende del paquete elegido, pero en general incluimos:<ul><li>Vuelos de ida y vuelta</li><li>Hospedaje en hoteles seleccionados</li><li>Traslados aeropuerto – hotel – aeropuerto</li><li>Tours y actividades indicadas en el itinerario</li><li>Asistencia de nuestro equipo antes y durante el viaje</li></ul>El seguro de viaje es <strong>altamente recomendado</strong> y lo cotizamos por separado.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Tienen atención durante el viaje si surge algún problema?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Sí. Tienes un número de WhatsApp de atención de emergencias disponible <strong>24/7 durante tu viaje</strong>. Si surge cualquier situación (vuelo cancelado, problema con el hotel, emergencia médica), nuestro equipo te asiste de inmediato para encontrar una solución.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Puedo personalizar un circuito que ya tienen publicado?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">¡Absolutamente! Todos nuestros circuitos son puntos de partida. Puedes <strong>agregar días, cambiar destinos, subir la categoría de hotel</strong>, agregar experiencias especiales o modificar fechas. Cuéntanos qué tienes en mente y lo ajustamos a tu medida.</div></div>
+      </div>
+
+      <!-- SEGURO -->
+      <div class="faq-category" id="seguro">
+        <div class="cat-header"><div class="cat-icon">🛡️</div><div class="cat-title">Seguro de viaje</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Por qué es importante contratar un seguro de viaje?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">El seguro de viaje te protege ante situaciones inesperadas: <strong>cancelación de vuelo, emergencia médica en el extranjero, pérdida de equipaje, repatriación</strong> y más. En destinos como Europa, una hospitalización puede costar decenas de miles de dólares. <strong>Recomendamos siempre incluirlo</strong> — el costo es mínimo comparado con el riesgo.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Qué aseguradoras manejan?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Trabajamos con <strong>Assist Card, AXA Travel, Allianz y GNP</strong>. Cotizamos la opción que mejor se adapte a tu destino, duración de viaje y necesidades. Los precios van desde $500 MXN por persona para viajes cortos.</div></div>
+      </div>
+
+      <!-- CANCELACIONES -->
+      <div class="faq-category" id="cancelaciones">
+        <div class="cat-header"><div class="cat-icon">↩️</div><div class="cat-title">Cambios y cancelaciones</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Qué pasa si necesito cancelar mi viaje?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Las políticas de cancelación dependen de los proveedores (aerolínea, hotel, crucero). En términos generales:<ul><li><strong>+60 días antes:</strong> Reembolso del 80-100% según proveedor</li><li><strong>30-60 días antes:</strong> Reembolso parcial (50-70%)</li><li><strong>Menos de 30 días:</strong> Las penalizaciones pueden ser mayores</li></ul>Por eso recomendamos el <strong>seguro de cancelación</strong> que cubre hasta el 100% del viaje ante causas justificadas (enfermedad, accidente, etc.).</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Puedo cambiar las fechas de mi viaje?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Sí, sujeto a disponibilidad y a las políticas del proveedor. Los cambios de fecha realizados con <strong>más de 45 días de anticipación</strong> generalmente tienen menor penalización. Te recomendamos comunicarte con nosotros lo antes posible si necesitas hacer algún cambio.</div></div>
+      </div>
+
+      <!-- DESTINOS Y VISAS -->
+      <div class="faq-category" id="destinos">
+        <div class="cat-header"><div class="cat-icon">🌍</div><div class="cat-title">Destinos y visas</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Me ayudan con el trámite de visa?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Sí. Brindamos <strong>asesoría completa para visa Schengen (Europa), EE.UU., Canadá y otros destinos</strong>. Te guiamos en la documentación necesaria, fechas de cita y llenado de formularios. Sin embargo, la aprobación final depende de la embajada correspondiente.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Los mexicanos necesitan visa para Europa?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Sí. Los ciudadanos mexicanos requieren <strong>visa Schengen</strong> para ingresar a la mayoría de países de la Unión Europea. La tramitamos con tiempo suficiente como parte de tu paquete. A partir de 2025 también entrará en vigor el sistema <strong>ETIAS</strong> (Autorización de Viaje Europea). Te mantenemos informado de todos los requisitos actualizados.</div></div>
+        <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-question"><div class="faq-q-text">¿Cuáles son los destinos más populares con clientes mexicanos?</div><div class="faq-arrow">▾</div></div><div class="faq-answer">Los favoritos de nuestros clientes son:<ul><li>🏛️ <strong>Europa:</strong> España, Italia, Francia</li><li>🌊 <strong>Nacionales:</strong> Riviera Maya, Los Cabos, Oaxaca</li><li>🚢 <strong>Cruceros:</strong> Caribe y Mediterráneo</li><li>🌸 <strong>Asia:</strong> Japón y Tailandia</li><li>🌱 <strong>Emergente top 2025:</strong> Georgia, Marruecos</li></ul></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT INLINE -->
+<section class="chatbot-section">
+  <div class="chatbot-inner reveal">
+    <div class="chatbot-card">
+      <div class="chatbot-info">
+        <div class="chatbot-badge">🤖 Asistente Virtual</div>
+        <div class="chatbot-title">¿No encontraste tu respuesta?</div>
+        <div class="chatbot-desc">Nuestro asistente virtual puede responder tus preguntas al instante, las 24 horas del día. Pregunta lo que sea sobre destinos, costos, visas o servicios.</div>
+        <div class="chat-chips-grid">
+          <div class="chat-chip-inline" onclick="sendFaqChat('¿Cuánto cuesta un viaje a Europa?')"><span class="chip-icon">💶</span>¿Cuánto cuesta un viaje a Europa?</div>
+          <div class="chat-chip-inline" onclick="sendFaqChat('¿Necesito visa para viajar?')"><span class="chip-icon">📄</span>¿Necesito visa para viajar?</div>
+          <div class="chat-chip-inline" onclick="sendFaqChat('¿Cómo funciona el seguro de viaje?')"><span class="chip-icon">🛡️</span>¿Cómo funciona el seguro de viaje?</div>
+          <div class="chat-chip-inline" onclick="sendFaqChat('¿Puedo pagar a meses sin intereses?')"><span class="chip-icon">💳</span>¿Puedo pagar a meses sin intereses?</div>
+        </div>
+      </div>
+      <div class="chat-demo">
+        <div class="chat-demo-header"><div class="demo-avatar">🤖</div><div><div class="demo-name">Asistente GOTRIP</div><div class="demo-status">● En línea ahora</div></div></div>
+        <div class="chat-demo-messages" id="faqChatMessages">
+          <div class="dmsg dmsg-bot">¡Hola! 👋 Soy el asistente de GOTRIP MX. ¿En qué puedo ayudarte hoy?</div>
+        </div>
+        <div class="chat-demo-input">
+          <input type="text" class="demo-input-field" id="faqChatInput" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')sendFaqChatFromInput()">
+          <button class="demo-send" onclick="sendFaqChatFromInput()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band"><div class="cta-band-inner reveal"><h2>¿Tienes más preguntas?</h2><p>Nuestro equipo responde en menos de 2 horas por WhatsApp y en 24 horas por email.</p><div class="cta-btns"><a href="https://wa.me/5215649139445" target="_blank" class="btn-primary">💬 WhatsApp</a><a href="mailto:ventas@gotripmx.com" class="btn-ghost">✉ Enviar email</a></div></div></div>
+
+<footer><div class="footer-inner"><div class="footer-top"><div><div class="footer-logo-row"><span style="color:white">GO</span><span style="color:var(--t)">📍</span><span style="color:white">trip</span><span style="color:var(--muted);font-size:14px;font-weight:700;margin-left:3px;">MX</span></div><p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p><div class="footer-social"><a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a><a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a><a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a><a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a></div></div><div class="footer-col"><h4>Servicios</h4><ul class="footer-links"><li><a href="#">Vuelos</a></li><li><a href="#">Hoteles</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="#">Cruceros</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul class="footer-links"><li><a href="nosotros.html">Nosotros</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445</span></div><div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div></div></div><div class="footer-bottom"><span>© 2025 GOTRIP MX · Todos los derechos reservados</span><div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a></div></div></div></footer>
+
+<a href="https://wa.me/5215649139445" target="_blank" class="float-wa">💬</a>
+<div class="float-chat" onclick="document.getElementById('floatBubble').classList.toggle('open')">🤖</div>
+<div class="float-bubble" id="floatBubble">
+  <div class="fb-header"><div class="fb-info"><div class="fb-avatar">🤖</div><div><div class="fb-name">Asistente GOTRIP</div><div class="fb-status">● En línea</div></div></div><div class="fb-close" onclick="document.getElementById('floatBubble').classList.remove('open')">✕</div></div>
+  <div class="fb-msgs" id="fbMsgs"><div class="fb-msg fb-msg-bot">¡Hola! ¿En qué te puedo ayudar? Puedes preguntarme sobre destinos, precios, visas o cualquier duda. 💜</div><div class="fb-chips"><span class="fb-chip" onclick="fbChip('Europa')">🏛️ Europa</span><span class="fb-chip" onclick="fbChip('Precios')">💰 Precios</span><span class="fb-chip" onclick="fbChip('Visa')">📄 Visa</span><span class="fb-chip" onclick="fbChip('Cruceros')">🚢 Cruceros</span></div></div>
+  <div class="fb-input-row"><input type="text" class="fb-input" id="fbInput" placeholder="Escribe tu pregunta…" onkeydown="if(event.key==='Enter')fbSend()"><button class="fb-send" onclick="fbSend()">➤</button></div>
+</div>
+
+<script>
+// Base de conocimiento del chatbot
+const KB = {
+  'europa': 'Los paquetes a Europa incluyen vuelo, hotel y traslados. Los precios comienzan desde $38,000 MXN por persona para 10 días. Destinos populares: España, Italia, Francia, Portugal. 🏛️',
+  'precios': 'Nuestros paquetes comienzan desde $8,500 MXN para destinos nacionales y desde $28,000 MXN para internacionales. Todo depende del destino, duración y categoría de hotel. ¡Cotiza gratis!',
+  'visa': 'Los mexicanos necesitan visa Schengen para Europa y visa para EE.UU./Canadá. Te asesoramos en el proceso completo. ¿A qué destino quieres viajar? 📄',
+  'cruceros': 'Manejamos cruceros por el Caribe, Mediterráneo, Alaska y más. Los precios arrancan desde $28,000 MXN por persona (7 noches). Trabajamos con Royal Caribbean, MSC y Carnival. 🚢',
+  'default': 'Esa es una excelente pregunta. Para darte la mejor respuesta, te recomendamos escribirnos por WhatsApp al +52 56 4913 9445 o enviar un correo a ventas@gotripmx.com. ¡Respondemos en menos de 2 horas! ✈'
+};
+
+function getKBResponse(msg){
+  const m = msg.toLowerCase();
+  if(m.includes('europ') || m.includes('madrid') || m.includes('paris') || m.includes('italia') || m.includes('roma')) return KB['europa'];
+  if(m.includes('precio') || m.includes('costo') || m.includes('cuánto') || m.includes('cuanto')) return KB['precios'];
+  if(m.includes('visa') || m.includes('pasaporte') || m.includes('documentos')) return KB['visa'];
+  if(m.includes('crucero') || m.includes('barco') || m.includes('royal') || m.includes('caribe')) return KB['cruceros'];
+  if(m.includes('meses') || m.includes('pago') || m.includes('pagar')) return 'Sí, ofrecemos hasta 12 meses sin intereses con tarjetas participantes (BBVA, Banamex, Santander). El mínimo es $5,000 MXN. 💳';
+  if(m.includes('seguro') || m.includes('emergencia')) return 'Trabajamos con Assist Card, AXA Travel y Allianz. Los precios arrancan desde $500 MXN por persona. ¡Muy recomendado! 🛡️';
+  if(m.includes('japón') || m.includes('japon') || m.includes('tokio')) return 'Japón es uno de nuestros destinos estrella. Paquetes desde $55,000 MXN · 14 días · incluye vuelo, hoteles y guía. 🌸';
+  if(m.includes('cancún') || m.includes('cancun') || m.includes('riviera') || m.includes('maya')) return 'La Riviera Maya es nuestro destino nacional más vendido. Paquetes todo incluido desde $12,000 MXN. 🌊';
+  return KB['default'];
+}
+
+// Chat FAQ inline
+function sendFaqChat(msg){
+  const msgs = document.getElementById('faqChatMessages');
+  msgs.innerHTML += `<div class="dmsg dmsg-user">${msg}</div>`;
+  setTimeout(()=>{
+    msgs.innerHTML += `<div class="dmsg dmsg-bot">${getKBResponse(msg)}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 700);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+function sendFaqChatFromInput(){
+  const input = document.getElementById('faqChatInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value='';
+  sendFaqChat(msg);
+}
+
+// Float bubble
+function fbChip(topic){ fbRespond(topic); }
+function fbSend(){
+  const input = document.getElementById('fbInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+  input.value='';
+  fbRespond(msg);
+}
+function fbRespond(msg){
+  const msgs = document.getElementById('fbMsgs');
+  msgs.innerHTML += `<div class="fb-msg fb-msg-user">${msg}</div>`;
+  setTimeout(()=>{
+    msgs.innerHTML += `<div class="fb-msg fb-msg-bot">${getKBResponse(msg)}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 700);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// FAQ accordeon
+function toggleFaq(item){ item.classList.toggle('open'); }
+
+// Search
+function searchFaq(q){
+  if(!q){document.querySelectorAll('.faq-item').forEach(i=>i.style.display='');return;}
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(q.toLowerCase())?'':'none';
+  });
+}
+
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+const observer=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

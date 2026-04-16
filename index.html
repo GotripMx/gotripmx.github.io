@@ -384,29 +384,29 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
     <span class="logo-mx">MX</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#destinos">Destinos</a></li>
-    <li><a href="#circuitos">Circuitos</a></li>
-    <li><a href="#nosotros">Nosotros</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="circuitos.html">Circuitos</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="resenas.html">Reseñas</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
   </ul>
-  <a href="#cotizador" class="nav-cta">✈ Cotizar viaje</a>
+  <a href="contacto.html#cotizador" class="nav-cta">✈ Cotizar viaje</a>
   <div class="hamburger" onclick="toggleMenu()" id="hamburger">
     <span></span><span></span><span></span>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#inicio" onclick="toggleMenu()">🏠 Inicio</a>
-  <a href="#destinos" onclick="toggleMenu()">🌍 Destinos</a>
-  <a href="#circuitos" onclick="toggleMenu()">🗺️ Circuitos</a>
-  <a href="#nosotros" onclick="toggleMenu()">👥 Nosotros</a>
-  <a href="#faq" onclick="toggleMenu()">❓ FAQ</a>
-  <a href="#blog" onclick="toggleMenu()">📰 Blog</a>
-  <a href="#contacto" onclick="toggleMenu()">📞 Contacto</a>
-  <a href="#cotizador" onclick="toggleMenu()">✈ Cotizar viaje</a>
+  <a href="index.html" onclick="toggleMenu()">🏠 Inicio</a>
+  <a href="circuitos.html" onclick="toggleMenu()">🗺️ Circuitos</a>
+  <a href="nosotros.html" onclick="toggleMenu()">👥 Nosotros</a>
+  <a href="resenas.html" onclick="toggleMenu()">⭐ Reseñas</a>
+  <a href="faq.html" onclick="toggleMenu()">❓ FAQ</a>
+  <a href="blog.html" onclick="toggleMenu()">📰 Blog</a>
+  <a href="contacto.html" onclick="toggleMenu()">📞 Contacto</a>
+  <a href="contacto.html#cotizador" onclick="toggleMenu()">✈ Cotizar viaje</a>
 </div>
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
@@ -419,8 +419,8 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
       <h1 class="hero-h1">Haz maletas,<br><em>nosotros hacemos</em><br>el resto.</h1>
       <p class="hero-sub">Viajes a la medida, circuitos nacionales e internacionales, cruceros, tours y experiencias únicas. Desde México para el mundo.</p>
       <div class="hero-btns">
-        <a href="#cotizador" class="btn-primary">✈ Cotiza tu viaje gratis</a>
-        <a href="#destinos" class="btn-ghost">🌍 Ver destinos</a>
+        <a href="contacto.html#cotizador" class="btn-primary">✈ Cotiza tu viaje gratis</a>
+        <a href="circuitos.html" class="btn-ghost">🌍 Ver destinos</a>
       </div>
       <div class="hero-stats">
         <div><div class="hero-stat-num">500<span>+</span></div><div class="hero-stat-label">Viajeros felices</div></div>
@@ -494,18 +494,108 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
       <h2 class="section-h2">Cotiza tu viaje ahora</h2>
       <p class="section-sub">Cuéntanos a dónde quieres ir y te enviamos una propuesta personalizada en menos de 24h.</p>
     </div>
-    <div class="form-grid reveal">
-      <div class="form-group"><label class="form-label">Nombre completo</label><input type="text" class="form-input" placeholder="Tu nombre"></div>
-      <div class="form-group"><label class="form-label">Email</label><input type="email" class="form-input" placeholder="correo@ejemplo.com"></div>
-      <div class="form-group"><label class="form-label">WhatsApp</label><input type="tel" class="form-input" placeholder="55 1234 5678"></div>
-      <div class="form-group two"><label class="form-label">¿A dónde quieres ir?</label><input type="text" class="form-input" placeholder="Italia, Cancún, Crucero Caribe, Japón…" id="destinoCot"></div>
-      <div class="form-group"><label class="form-label">Tipo de servicio</label><select class="form-select"><option>Paquete completo</option><option>Solo vuelos</option><option>Solo hotel</option><option>Circuito</option><option>Crucero</option><option>Viaje a la medida</option></select></div>
-      <div class="form-group"><label class="form-label">Fecha aproximada</label><input type="month" class="form-input"></div>
-      <div class="form-group"><label class="form-label">Viajeros</label><select class="form-select"><option>1 viajero</option><option>2 viajeros</option><option>3–4 viajeros</option><option>5 o más</option></select></div>
-      <div class="form-group full"><label class="form-label">Cuéntanos más</label><input type="text" class="form-input" placeholder="Luna de miel, primera vez, presupuesto…"></div>
-      <div class="form-group full"><button class="form-submit" onclick="submitCot()">✈ Quiero que me contacten</button></div>
+
+    <!-- Estado: formulario -->
+    <div id="cotForm">
+      <div class="form-grid reveal">
+        <!-- Campo 1: Nombre — entry.813242491 -->
+        <div class="form-group">
+          <label class="form-label">Nombre completo *</label>
+          <input type="text" id="cot_nombre" class="form-input" placeholder="Tu nombre completo" required>
+        </div>
+        <!-- Campo 2: WhatsApp — entry.642752066 -->
+        <div class="form-group">
+          <label class="form-label">WhatsApp *</label>
+          <input type="tel" id="cot_wa" class="form-input" placeholder="55 1234 5678" required>
+        </div>
+        <!-- Campo 3: Email — entry.1319653050 -->
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" id="cot_email" class="form-input" placeholder="correo@ejemplo.com" required>
+        </div>
+        <!-- Campo 4: Destino — entry.556509502 -->
+        <div class="form-group two">
+          <label class="form-label">¿A dónde quieres viajar? *</label>
+          <input type="text" id="cot_destino" class="form-input" placeholder="Italia, Cancún, Crucero Caribe, Japón…" required>
+        </div>
+        <!-- Campo 5: Tipo de viaje — entry.1822863131 -->
+        <div class="form-group">
+          <label class="form-label">Tipo de viaje *</label>
+          <select id="cot_tipo" class="form-select" required>
+            <option value="">Selecciona…</option>
+            <option>Paquete completo</option>
+            <option>Solo vuelos</option>
+            <option>Solo hotel</option>
+            <option>Crucero</option>
+            <option>Viaje a la medida</option>
+            <option>Grupo empresarial</option>
+          </select>
+        </div>
+        <!-- Campo 6: Fecha — entry.553001196 -->
+        <div class="form-group">
+          <label class="form-label">¿Cuándo quieres viajar?</label>
+          <select id="cot_fecha" class="form-select">
+            <option value="">Mes aproximado…</option>
+            <option>Mayo 2025</option><option>Junio 2025</option><option>Julio 2025</option>
+            <option>Agosto 2025</option><option>Septiembre 2025</option><option>Octubre 2025</option>
+            <option>Noviembre 2025</option><option>Diciembre 2025</option>
+            <option>Enero 2026</option><option>Febrero 2026</option><option>Marzo 2026</option>
+            <option>Abril 2026</option><option>Mayo 2026</option><option>Junio 2026</option>
+            <option>Julio 2026</option><option>Agosto 2026</option><option>Septiembre 2026</option>
+            <option>Octubre 2026</option><option>Noviembre 2026</option><option>Diciembre 2026</option>
+          </select>
+        </div>
+        <!-- Campo 7: Viajeros — entry.1790545503 -->
+        <div class="form-group">
+          <label class="form-label">Número de viajeros *</label>
+          <select id="cot_viajeros" class="form-select" required>
+            <option value="">Selecciona…</option>
+            <option>1 viajero</option>
+            <option>2 viajeros</option>
+            <option>3-4 viajeros</option>
+            <option>5-10 viajeros</option>
+            <option>Grupo de 10+</option>
+          </select>
+        </div>
+        <!-- Campo 8: Presupuesto — entry.391987847 -->
+        <div class="form-group two">
+          <label class="form-label">Presupuesto aproximado por persona</label>
+          <select id="cot_presupuesto" class="form-select">
+            <option value="">Prefiero no especificar</option>
+            <option>Menos de $15,000 MXN</option>
+            <option>$15,000 - $30,000 MXN</option>
+            <option>$30,000 - $60,000 MXN</option>
+            <option>Más de $60,000 MXN</option>
+          </select>
+        </div>
+        <!-- Campo 9: Notas — entry.553001196 reutilizado como párrafo libre -->
+        <div class="form-group full">
+          <label class="form-label">¿Algo especial que debamos saber?</label>
+          <input type="text" id="cot_notas" class="form-input" placeholder="Luna de miel, primera vez en Europa, necesidades especiales…">
+        </div>
+        <div class="form-group full">
+          <button class="form-submit" onclick="submitCotizacion()">
+            <span id="cot_btn_text">✈ Quiero que me contacten</span>
+          </button>
+        </div>
+      </div>
+      <p class="form-note">🔒 Datos protegidos · Respondemos en menos de 24 horas · Sin compromiso de compra</p>
     </div>
-    <p class="form-note">🔒 Datos protegidos · Respondemos en menos de 24 horas</p>
+
+    <!-- Estado: éxito -->
+    <div id="cotSuccess" style="display:none; text-align:center; padding:48px 20px;">
+      <div style="font-size:56px; margin-bottom:20px;">✈</div>
+      <h3 style="font-family:'Nunito',sans-serif; font-size:26px; font-weight:900; color:white; margin-bottom:12px;">¡Solicitud enviada!</h3>
+      <p style="font-size:16px; color:rgba(255,255,255,0.75); font-weight:300; line-height:1.7; margin-bottom:28px; max-width:480px; margin-left:auto; margin-right:auto;">Un asesor de GOTRIP MX te contactará en <strong style="color:var(--tl);">menos de 24 horas</strong> por WhatsApp con tu propuesta personalizada.</p>
+      <a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20acabo%20de%20enviar%20una%20solicitud%20de%20cotización" target="_blank" class="btn-primary" style="margin:0 auto;">💬 ¿Preferes respuesta inmediata? WhatsApp</a>
+    </div>
+
+    <!-- Estado: error -->
+    <div id="cotError" style="display:none; text-align:center; padding:32px 20px;">
+      <p style="font-size:15px; color:rgba(255,200,100,0.9); margin-bottom:16px;">Hubo un problema al enviar. Intenta de nuevo o contáctanos directamente.</p>
+      <a href="https://wa.me/5215649139445" target="_blank" class="btn-primary" style="margin:0 auto;">💬 Contactar por WhatsApp</a>
+    </div>
+
   </div>
 </section>
 
@@ -531,7 +621,7 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
           <div class="valor-item"><div class="valor-icon">🛡️</div><div><div class="valor-title">Viaje seguro</div><div class="valor-desc">Seguro de viajero y respaldo en destino 24/7</div></div></div>
           <div class="valor-item"><div class="valor-icon">💻</div><div><div class="valor-title">100% digital</div><div class="valor-desc">Cotiza, paga y da seguimiento en línea</div></div></div>
         </div>
-        <a href="#cotizador" class="btn-primary" style="display:inline-flex;">🌍 Planea tu viaje con nosotros</a>
+        <a href="contacto.html#cotizador" class="btn-primary" style="display:inline-flex;">🌍 Planea tu viaje con nosotros</a>
       </div>
     </div>
   </div>
@@ -579,7 +669,7 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
     <div class="reveal">
       <div class="section-tag">Respuestas rápidas</div>
       <h2 class="section-h2">Preguntas frecuentes</h2>
-      <p class="section-sub" style="margin-bottom:8px;">Las dudas más comunes sobre nuestros servicios. Si no encuentras tu respuesta, ¡escríbenos!</p>
+      <p class="section-sub" style="margin-bottom:8px;">Las dudas más comunes sobre nuestros servicios. <a href="faq.html" style="color:var(--t);font-weight:600;">Ver todas las preguntas →</a></p>
       <div class="faq-list" id="faqList">
         <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Cómo funciona el proceso de reserva?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">1. Cotizas gratis → 2. Recibimos tu solicitud → 3. Te enviamos propuesta personalizada en 24h → 4. Ajustes hasta que quede perfecto → 5. Confirmas con anticipo → ✈ ¡A viajar!</div></div>
         <div class="faq-item-p" onclick="toggleFaq(this)"><div class="faq-question-p"><div class="faq-q-text">¿Aceptan pagos a meses sin intereses?</div><div class="faq-arrow-p">▾</div></div><div class="faq-answer-p">Sí, ofrecemos 3, 6 y 12 meses sin intereses con tarjetas BBVA, Banamex, Santander, HSBC y más. Monto mínimo $5,000 MXN.</div></div>
@@ -616,7 +706,7 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
   <div class="section-inner">
     <div class="reveal" style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:16px;">
       <div><div class="section-tag">Inspiración para viajar</div><h2 class="section-h2" style="margin-bottom:0;">Blog de viajes GOTRIP</h2></div>
-      <a href="#blog" class="btn-primary" style="font-size:13px;padding:10px 20px;">Ver todos →</a>
+      <a href="blog.html" class="btn-primary" style="font-size:13px;padding:10px 20px;">Ver todos →</a>
     </div>
     <div class="blog-grid reveal">
       <div class="blog-card feat"><div class="blog-img" style="background:linear-gradient(135deg,#1a0533,#6F1CAF);">🏛️</div><div class="blog-body"><div class="blog-cat">Guía de Destino</div><div class="blog-title">10 razones para visitar Europa en 2025: la guía definitiva para mexicanos</div><div class="blog-excerpt">Visa, vuelos, presupuesto y los destinos que están de moda este año.</div><div class="blog-meta"><span>📅 Dic 2024</span><span>⏱ 8 min</span></div></div></div>
@@ -633,7 +723,7 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
     <p>Nuestro equipo está listo para armar el viaje de tus sueños. Cotización sin costo ni compromiso.</p>
     <div class="cta-btns">
       <a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20me%20interesa%20cotizar%20un%20viaje" target="_blank" class="btn-primary">💬 WhatsApp</a>
-      <a href="mailto:ventas@gotripmx.com" class="btn-ghost">✉ ventas@gotripmx.com</a>
+      <a href="contacto.html#cotizador" class="btn-ghost">✈ Cotizar ahora</a>
     </div>
   </div>
 </section>
@@ -659,11 +749,11 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
       </div>
       <div class="footer-col">
         <h4>Servicios</h4>
-        <ul class="footer-links-f"><li><a href="#">Vuelos</a></li><li><a href="#">Hoteles</a></li><li><a href="#">Circuitos</a></li><li><a href="#">Cruceros</a></li><li><a href="#">Experiencias</a></li><li><a href="#">Seguro de viaje</a></li></ul>
+        <ul class="footer-links-f"><li><a href="circuitos.html">Vuelos</a></li><li><a href="circuitos.html">Hoteles</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="circuitos.html">Cruceros</a></li><li><a href="circuitos.html">Experiencias</a></li><li><a href="circuitos.html">Seguro de viaje</a></li></ul>
       </div>
       <div class="footer-col">
-        <h4>Destinos</h4>
-        <ul class="footer-links-f"><li><a href="#">Europa</a></li><li><a href="#">México</a></li><li><a href="#">Caribe</a></li><li><a href="#">Cruceros</a></li><li><a href="#">Asia</a></li><li><a href="#">Emergentes</a></li></ul>
+        <h4>Empresa</h4>
+        <ul class="footer-links-f"><li><a href="nosotros.html">Nosotros</a></li><li><a href="nosotros.html#aliados">Aliados</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul>
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
@@ -674,7 +764,7 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
     </div>
     <div class="footer-bottom">
       <span>© 2025 GOTRIP MX · Todos los derechos reservados</span>
-      <div style="display:flex;gap:16px;"><a href="#">Aviso de Privacidad</a><a href="#">Términos</a></div>
+      <div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a><a href="privacidad.html#terminos">Términos</a></div>
     </div>
   </div>
 </footer>
@@ -729,7 +819,7 @@ function filterDest(region, btn){
 function toggleFaq(item){item.classList.toggle('open');}
 
 // ── COTIZADOR
-function submitCot(){alert('¡Gracias! Un asesor de GOTRIP MX te contactará en menos de 24 horas. ✈💜');}
+function submitCot(){window.location.href='contacto.html#cotizador';}
 
 // ── KNOWLEDGE BASE DEL CHATBOT
 const KB = {

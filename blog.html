@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog de Viajes – GOTRIP MX</title>
+<meta name="description" content="Tips de viaje, guías de destinos, tendencias y consejos para viajeros mexicanos. Blog GOTRIP MX.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6F1CAF;--pd:#541981;--pl:#C191D7;--t:#2BBFA4;--td:#1E9E87;--tl:#7DDDD0;--dark:#0E0714;--ink:#1C1033;--bg:#F7F4FC;--white:#ffffff;--muted:#7A6B90;--border:rgba(111,28,175,0.12);--nav-h:68px;}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Lato',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:var(--nav-h);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
+nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
+.nav-logo-text{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:1px;white-space:nowrap;}
+.nav-logo-text .go{color:var(--p);}.nav-logo-text .pin{color:var(--t);font-size:20px;margin:0 1px;}.nav-logo-text .trip{color:var(--p);}.nav-logo-text .mx{color:var(--muted);font-size:13px;margin-left:3px;font-weight:700;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.3px;transition:color .2s;text-transform:uppercase;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:var(--p);}
+.nav-cta{background:var(--t);color:white;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;white-space:nowrap;transition:all .2s;flex-shrink:0;}
+.nav-cta:hover{background:var(--td);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
+.hamburger span{width:22px;height:2px;background:var(--p);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:4px;}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.mobile-menu a:last-child{border:none;color:var(--t);}
+.mobile-menu.open{display:flex;}
+@media(max-width:960px){.nav-links{display:none;}}
+@media(max-width:600px){.nav-cta{display:none;}.hamburger{display:flex;}}
+.page-hero{padding:calc(var(--nav-h)+60px) 5% 70px;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);}.breadcrumb a:hover{color:var(--tl);}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:white;margin-bottom:14px;line-height:1.15;}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.7);font-weight:300;max-width:500px;line-height:1.7;}
+.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FEATURED */
+.featured-section{padding:60px 5%;background:var(--bg);}
+.featured-inner{max-width:1200px;margin:0 auto;}
+.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:12px;}
+.section-h2{font-family:'Nunito',sans-serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;color:var(--ink);margin-bottom:36px;line-height:1.2;}
+.featured-card{background:white;border:1px solid var(--border);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.2fr 1fr;transition:all .3s;cursor:pointer;}
+.featured-card:hover{box-shadow:0 24px 48px rgba(111,28,175,0.12);}
+.featured-img{min-height:360px;background:linear-gradient(135deg,var(--pd),var(--p) 50%,var(--t));display:flex;align-items:center;justify-content:center;font-size:100px;position:relative;overflow:hidden;}
+.featured-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(255,255,255,0.05));}
+.featured-body{padding:40px 32px;display:flex;flex-direction:column;justify-content:center;}
+.feat-cat{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t);margin-bottom:10px;}
+.feat-title{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:var(--ink);margin-bottom:14px;line-height:1.3;}
+.feat-excerpt{font-size:14px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:20px;}
+.feat-meta{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-bottom:24px;}
+.feat-meta span{display:flex;align-items:center;gap:4px;}
+.btn-read{display:inline-flex;align-items:center;gap:8px;background:var(--p);color:white;padding:11px 22px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;transition:all .2s;}
+.btn-read:hover{background:var(--pd);transform:translateY(-2px);}
+@media(max-width:700px){.featured-card{grid-template-columns:1fr;}.featured-img{min-height:220px;font-size:64px;}}
+
+/* FILTER */
+.blog-filter{background:white;border-bottom:1px solid var(--border);padding:16px 5%;position:sticky;top:var(--nav-h);z-index:90;}
+.filter-inner{max-width:1200px;margin:0 auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.filter-btn{padding:8px 18px;border-radius:50px;font-size:13px;font-weight:700;border:2px solid var(--border);background:white;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;white-space:nowrap;}
+.filter-btn.active,.filter-btn:hover{background:var(--p);color:white;border-color:var(--p);}
+
+/* BLOG GRID */
+.blog-section{padding:60px 5%;background:var(--bg);}
+.blog-inner{max-width:1200px;margin:0 auto;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.blog-card{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;cursor:pointer;}
+.blog-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(111,28,175,0.1);}
+.blog-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;overflow:hidden;}
+.blog-badge{position:absolute;top:12px;left:12px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+.badge-guia{background:var(--p);color:white;}
+.badge-tips{background:var(--t);color:white;}
+.badge-tendencia{background:linear-gradient(135deg,#f72585,#b5179e);color:white;}
+.badge-cultura{background:linear-gradient(135deg,#fb8500,#ffb703);color:white;}
+.badge-presupuesto{background:linear-gradient(135deg,#2b9348,#55a630);color:white;}
+.blog-body{padding:22px;}
+.blog-cat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--t);margin-bottom:8px;}
+.blog-title{font-family:'Nunito',sans-serif;font-size:17px;font-weight:900;color:var(--ink);margin-bottom:10px;line-height:1.3;}
+.blog-excerpt{font-size:13px;color:var(--muted);font-weight:300;line-height:1.6;margin-bottom:16px;}
+.blog-footer{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border);}
+.blog-meta{font-size:11px;color:var(--muted);display:flex;gap:10px;}
+.blog-meta span{display:flex;align-items:center;gap:3px;}
+.blog-link{font-size:12px;font-weight:700;color:var(--p);transition:color .2s;}
+.blog-link:hover{color:var(--t);}
+@media(max-width:800px){.blog-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.blog-grid{grid-template-columns:1fr;}}
+
+/* SIDEBAR NEWSLETTER */
+.blog-layout{display:grid;grid-template-columns:1fr 300px;gap:40px;max-width:1200px;margin:0 auto;padding:0 5% 60px;}
+.newsletter-card{background:linear-gradient(135deg,var(--pd),var(--p));border-radius:20px;padding:28px;text-align:center;position:sticky;top:calc(var(--nav-h)+20px);}
+.nl-icon{font-size:36px;margin-bottom:14px;}
+.nl-title{font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;color:white;margin-bottom:8px;}
+.nl-desc{font-size:13px;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.6;margin-bottom:20px;}
+.nl-input{width:100%;padding:12px 14px;border-radius:10px;border:none;font-family:'Lato',sans-serif;font-size:13px;margin-bottom:10px;outline:none;}
+.nl-btn{width:100%;padding:12px;background:var(--t);color:white;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s;}
+.nl-btn:hover{background:var(--td);}
+.nl-note{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px;}
+.popular-posts{background:white;border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:20px;}
+.pop-title{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--ink);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.pop-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s;}
+.pop-item:last-child{border:none;}
+.pop-item:hover .pop-title-text{color:var(--p);}
+.pop-num{font-family:'Nunito',sans-serif;font-size:20px;font-weight:900;color:var(--pl);flex-shrink:0;line-height:1;}
+.pop-title-text{font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--ink);line-height:1.3;transition:color .2s;}
+.pop-meta{font-size:11px;color:var(--muted);margin-top:3px;}
+@media(max-width:900px){.blog-layout{grid-template-columns:1fr;}.newsletter-card,.popular-posts{position:static;}}
+
+/* FOOTER */
+footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255,255,0.05);}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;}
+.footer-logo-row{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:3px;}
+.footer-slogan{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:18px;}
+.footer-social{display:flex;gap:8px;}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;cursor:pointer;text-decoration:none;}
+.social-btn:hover{background:var(--p);border-color:var(--p);color:white;}
+.footer-col h4{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;transition:color .2s;}
+.footer-links a:hover{color:var(--tl);}
+.f-contact-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:10px;}
+.f-contact-icon{font-size:14px;flex-shrink:0;margin-top:1px;}
+.f-contact-text{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.5;}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12px;color:rgba(255,255,255,0.2);}
+.footer-bottom a{color:rgba(255,255,255,0.3);transition:color .2s;}
+.footer-bottom a:hover{color:var(--tl);}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr;}}
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;}
+.float-chat{position:fixed;bottom:28px;left:28px;z-index:200;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--t));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(111,28,175,0.4);cursor:pointer;transition:all .25s;}
+@keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7);}}
+</style>
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-logo-text"><span class="go">GO</span><span class="pin">📍</span><span class="trip">trip</span><span class="mx">MX</span></div>
+  <ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html" class="active">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html">Contacto</a></li></ul>
+  <a href="contacto.html#cotizador" class="nav-cta">✈ Cotizar viaje</a>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">🏠 Inicio</a><a href="nosotros.html">👥 Nosotros</a><a href="circuitos.html">🗺️ Circuitos</a><a href="resenas.html">⭐ Reseñas</a><a href="blog.html">📰 Blog</a><a href="faq.html">❓ FAQ</a><a href="contacto.html">📞 Contacto</a><a href="contacto.html#cotizador">✈ Cotizar viaje</a></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span> › </span><span>Blog</span></div>
+    <h1>Blog de Viajes GOTRIP</h1>
+    <p>Guías, tips, destinos y toda la inspiración que necesitas para tu próxima aventura. Escrito por viajeros, para viajeros.</p>
+  </div>
+</div>
+
+<!-- FEATURED -->
+<section class="featured-section">
+  <div class="featured-inner">
+    <div class="reveal"><div class="section-tag">Artículo destacado</div><h2 class="section-h2">Lectura recomendada esta semana</h2></div>
+    <div class="featured-card reveal">
+      <div class="featured-img">🏛️<div class="featured-img-overlay"></div></div>
+      <div class="featured-body">
+        <div class="feat-cat">🗺️ Guía de Destino · Europa</div>
+        <div class="feat-title">10 razones para visitar Europa en 2025: la guía definitiva para viajeros mexicanos</div>
+        <div class="feat-excerpt">Todo lo que necesitas saber: cuándo viajar, cuánto cuesta, qué visa tramitar, los destinos que están de moda y cómo sacarle el máximo a cada euro. La guía más completa que encontrarás.</div>
+        <div class="feat-meta"><span>📅 Diciembre 2024</span><span>⏱ 12 min lectura</span><span>👁 4,200 vistas</span></div>
+        <a href="#" class="btn-read">Leer artículo completo →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="blog-filter">
+  <div class="filter-inner">
+    <button class="filter-btn active" onclick="filterBlog('all',this)">Todos</button>
+    <button class="filter-btn" onclick="filterBlog('guia',this)">🗺️ Guías</button>
+    <button class="filter-btn" onclick="filterBlog('tips',this)">💡 Tips</button>
+    <button class="filter-btn" onclick="filterBlog('tendencia',this)">🔥 Tendencias</button>
+    <button class="filter-btn" onclick="filterBlog('presupuesto',this)">💰 Presupuesto</button>
+    <button class="filter-btn" onclick="filterBlog('cultura',this)">🎭 Cultura</button>
+  </div>
+</div>
+
+<!-- BLOG LAYOUT -->
+<div class="blog-layout">
+  <div>
+    <div class="blog-grid" id="blogGrid">
+
+      <div class="blog-card reveal" data-cat="tips">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0a3a2a,#2BBFA4);"><span class="blog-badge badge-tips">💡 Tips</span>🏝️</div>
+        <div class="blog-body"><div class="blog-cat">Tips de viaje</div><div class="blog-title">Los secretos de Cancún que los turistas no conocen</div><div class="blog-excerpt">Más allá de la zona hotelera: cenotes escondidos, pueblos mágicos cercanos y dónde comer como local.</div><div class="blog-footer"><div class="blog-meta"><span>📅 Nov 2024</span><span>⏱ 6 min</span></div><span class="blog-link">Leer →</span></div></div>
+      </div>
+
+      <div class="blog-card reveal" data-cat="tendencia">
+        <div class="blog-img" style="background:linear-gradient(135deg,#1a1a0a,#6a4a1a);"><span class="blog-badge badge-tendencia">🔥 Tendencia</span>🏔️</div>
+        <div class="blog-body"><div class="blog-cat">Destinos Emergentes</div><div class="blog-title">Georgia: el destino del que todos hablarán en 2025</div><div class="blog-excerpt">Montañas del Cáucaso, vinos milenarios y una hospitalidad que transforma. ¿Por qué los mexicanos están enamorados?</div><div class="blog-footer"><div class="blog-meta"><span>📅 Nov 2024</span><span>⏱ 8 min</span></div><span class="blog-link">Leer →</span></div></div>
+      </div>
+
+      <div class="blog-card reveal" data-cat="presupuesto">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0a1a33,#2B5FBF);"><span class="blog-badge badge-presupuesto">💰 Presupuesto</span>🗼</div>
+        <div class="blog-body"><div class="blog-cat">Viaje económico</div><div class="blog-title">Cómo ir a París con menos de $40,000 MXN todo incluido</div><div class="blog-excerpt">Vuelos, hotel, comida y actividades. Desglose completo con trucos que solo los expertos conocen.</div><div class="blog-footer"><div class="blog-meta"><span>📅 Oct 2024</span><span>⏱ 10 min</span></div><span class="blog-link">Leer →</span></div></div>
+      </div>
+
+      <div class="blog-card reveal" data-cat="guia">
+        <div class="blog-img" style="background:linear-gradient(135deg,#1a0a0a,#8a1a1a);"><span class="blog-badge badge-guia">🗺️ Guía</span>🏯</div>
+        <div class="blog-body"><div class="blog-cat">Guía de destino</div><div class="blog-title">Japón para principiantes: todo lo que nadie te dice</div><div class="blog-excerpt">Desde el JR Pass hasta las normas culturales que debes conocer. La guía que hubiéramos querido tener.</div><div class="blog-footer"><div class="blog-meta"><span>📅 Oct 2024</span><span>⏱ 14 min</span></div><span class="blog-link">Leer →</span></div></div>
+      </div>
+
+      <div class="blog-card reveal" data-cat="cultura">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0a2a1a,#1E9E87);"><span class="blog-badge badge-cultura">🎭 Cultura</span>💃</div>
+        <div class="blog-body"><div class="blog-cat">Cultura y gastronomía</div><div class="blog-title">Oaxaca: la ciudad que se come, se bebe y se siente</div><div class="blog-excerpt">Mezcal, tlayudas, Monte Albán y la escena artística más vibrante de México. Guía gastronómica completa.</div><div class="blog-footer"><div class="blog-meta"><span>📅 Sep 2024</span><span>⏱ 7 min</span></div><span class="blog-link">Leer →</span></div></div>
+      </div>
+
+      <div class="blog-card reveal" data-cat="tips">
+        <div class="blog-img" style="background:linear-gradient(135deg,#0a1a3a,#1a5aAF);"><span class="blog-badge badge-tips">💡 Tips</span>🚢</div>
+        <div class="blog-body"><div class="blog-cat">Cruceros</div><div class="blog-title">Tu primer crucero: 15 cosas que debes saber antes de subir</div><div class="blog-excerpt">Desde cómo elegir la cabina perfecta hasta qué llevar en la maleta. Todo lo que los agentes saben y no siempre dicen.</div><div class="blog-footer"><div class="blog-meta"><span>📅 Sep 2024</span><span>⏱ 9 min</span></div><span class="blog-link">Leer →</span></div></div>
+      </div>
+
+    </div>
+
+    <!-- LOAD MORE -->
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <button onclick="alert('Más artículos próximamente')" style="background:transparent;border:2px solid var(--p);color:var(--p);padding:12px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s;" onmouseover="this.style.background=getComputedStyle(document.documentElement).getPropertyValue('--p');this.style.color='white'" onmouseout="this.style.background='transparent';this.style.color=getComputedStyle(document.documentElement).getPropertyValue('--p')">Cargar más artículos</button>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div>
+    <div class="newsletter-card reveal">
+      <div class="nl-icon">✉</div>
+      <div class="nl-title">Inspiración directa a tu correo</div>
+      <div class="nl-desc">Recibe guías, ofertas exclusivas y tips de viaje cada semana. ¡Gratis!</div>
+      <input type="email" class="nl-input" placeholder="tu@correo.com">
+      <button class="nl-btn" onclick="alert('¡Suscripción exitosa! Bienvenido al club viajero 💜')">Suscribirme →</button>
+      <div class="nl-note">Sin spam. Cancela cuando quieras.</div>
+    </div>
+    <div class="popular-posts reveal">
+      <div class="pop-title">🔥 Los más leídos</div>
+      <div class="pop-item"><div class="pop-num">01</div><div><div class="pop-title-text">Visa Schengen paso a paso desde México</div><div class="pop-meta">8,400 lecturas</div></div></div>
+      <div class="pop-item"><div class="pop-num">02</div><div><div class="pop-title-text">Los 10 destinos más baratos en 2025</div><div class="pop-meta">6,200 lecturas</div></div></div>
+      <div class="pop-item"><div class="pop-num">03</div><div><div class="pop-title-text">Qué llevar en tu maleta: lista definitiva</div><div class="pop-meta">5,100 lecturas</div></div></div>
+      <div class="pop-item"><div class="pop-num">04</div><div><div class="pop-title-text">Seguro de viaje: ¿vale la pena?</div><div class="pop-meta">4,800 lecturas</div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="footer-inner"><div class="footer-top"><div><div class="footer-logo-row"><span style="color:white">GO</span><span style="color:var(--t)">📍</span><span style="color:white">trip</span><span style="color:var(--muted);font-size:14px;font-weight:700;margin-left:3px;">MX</span></div><p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p><div class="footer-social"><a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a><a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a><a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a><a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a></div></div><div class="footer-col"><h4>Categorías</h4><ul class="footer-links"><li><a href="#">Guías de destino</a></li><li><a href="#">Tips de viaje</a></li><li><a href="#">Presupuesto</a></li><li><a href="#">Tendencias</a></li><li><a href="#">Cultura</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul class="footer-links"><li><a href="nosotros.html">Nosotros</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="faq.html">FAQ</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445</span></div><div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div></div></div><div class="footer-bottom"><span>© 2025 GOTRIP MX · Todos los derechos reservados</span><div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a></div></div></div></footer>
+<a href="https://wa.me/5215649139445" target="_blank" class="float-wa">💬</a>
+<div class="float-chat" onclick="alert('Chat con IA próximamente.')">🤖</div>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
+const observer=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function filterBlog(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.blog-card').forEach(card=>{
+    card.style.display=(cat==='all'||card.dataset.cat===cat)?'':'none';
+  });
+}
+</script>
+</body>
+</html>
