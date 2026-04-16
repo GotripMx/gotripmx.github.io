@@ -357,7 +357,7 @@ window.addEventListener('scroll',()=>document.getElementById('navbar').classList
 const observer=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-const FORM_ACTION='https://docs.google.com/forms/u/0/d/e/1FAIpQLSfOIAt67PA7dM1iWpy9bzvId-vJvGVtNC1v540cESjJZIn4mg/formResponse';
+const FORM_ACTION='https://docs.google.com/forms/u/0/d/e/1FAIpQLSfOIAt67PA7dM1iWpy9bzvId-vJvGVtNC1v54OcESjJZIn4mg/formResponse';
 
 document.getElementById('cotizadorForm').addEventListener('submit',async function(e){
   e.preventDefault();
