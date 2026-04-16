@@ -2,18 +2,22 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contáctanos – GOTRIP MX</title>
-<meta name="description" content="Cotiza tu viaje sin costo. WhatsApp, email y formulario de contacto. GOTRIP MX agencia de viajes digital México.">
+<title>Cotiza tu viaje – GOTRIP MX</title>
+<meta name="description" content="Cotiza tu viaje sin costo. Agencia de viajes digital mexicana. Respondemos en menos de 24 horas.">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-:root{--p:#6F1CAF;--pd:#541981;--pl:#C191D7;--t:#2BBFA4;--td:#1E9E87;--tl:#7DDDD0;--dark:#0E0714;--ink:#1C1033;--bg:#F7F4FC;--white:#ffffff;--muted:#7A6B90;--border:rgba(111,28,175,0.12);--nav-h:68px;}
+:root{--p:#6F1CAF;--pd:#541981;--pl:#C191D7;--t:#2BBFA4;--td:#1E9E87;--tl:#7DDDD0;--ink:#1C1033;--bg:#F7F4FC;--white:#fff;--muted:#7A6B90;--border:rgba(111,28,175,0.12);--nav-h:68px;}
 *{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
 body{font-family:'Lato',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
 a{text-decoration:none;color:inherit;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:var(--nav-h);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s;}
 nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
-.nav-logo-text{font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;display:flex;align-items:center;gap:1px;white-space:nowrap;}
-.nav-logo-text .go{color:var(--p);}.nav-logo-text .pin{color:var(--t);font-size:20px;margin:0 1px;}.nav-logo-text .trip{color:var(--p);}.nav-logo-text .mx{color:var(--muted);font-size:13px;margin-left:3px;font-weight:700;}
+.logo-mark{display:inline-flex;align-items:center;font-family:'Nunito',sans-serif;font-weight:900;white-space:nowrap;}
+.logo-go,.logo-trip{color:var(--p);font-size:22px;}
+.logo-pin{display:inline-flex;width:20px;height:24px;position:relative;margin:0 1px;top:-1px;flex-shrink:0;}
+.logo-pin::before{content:'';width:16px;height:16px;background:var(--t);border-radius:50% 50% 50% 0;transform:rotate(-45deg);position:absolute;top:0;}
+.logo-pin::after{content:'';width:6px;height:6px;background:white;border-radius:50%;position:absolute;top:5px;left:5px;}
+.logo-mx{color:var(--muted);font-size:13px;font-weight:700;margin-left:4px;align-self:flex-end;margin-bottom:2px;}
 .nav-links{display:flex;gap:22px;list-style:none;}
 .nav-links a{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.3px;transition:color .2s;text-transform:uppercase;white-space:nowrap;}
 .nav-links a:hover,.nav-links a.active{color:var(--p);}
@@ -22,84 +26,104 @@ nav.scrolled{box-shadow:0 4px 24px rgba(111,28,175,0.1);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;flex-shrink:0;}
 .hamburger span{width:22px;height:2px;background:var(--p);border-radius:2px;}
 .mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:white;padding:20px 5%;border-bottom:1px solid var(--border);z-index:99;flex-direction:column;gap:4px;}
-.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--border);}
 .mobile-menu a:last-child{border:none;color:var(--t);}
 .mobile-menu.open{display:flex;}
 @media(max-width:960px){.nav-links{display:none;}}
 @media(max-width:600px){.nav-cta{display:none;}.hamburger{display:flex;}}
-.page-hero{padding:calc(var(--nav-h) + 60px) 5% 70px;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
-.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.18) 0%,transparent 70%);pointer-events:none;}
-.page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
-.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
-.breadcrumb a{color:rgba(255,255,255,0.5);}.breadcrumb a:hover{color:var(--tl);}
-.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(30px,5vw,52px);font-weight:900;color:white;margin-bottom:14px;line-height:1.15;}
-.page-hero p{font-size:16px;color:rgba(255,255,255,0.7);font-weight:300;max-width:500px;line-height:1.7;}
-.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
-.reveal.visible{opacity:1;transform:none;}
 
-/* CONTACT CANALES */
-.canales{padding:56px 5%;background:var(--bg);}
-.canales-inner{max-width:1200px;margin:0 auto;}
-.canales-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-.canal-card{background:white;border:1px solid var(--border);border-radius:20px;padding:24px;text-align:center;transition:all .25s;cursor:pointer;}
-.canal-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(111,28,175,0.1);border-color:var(--t);}
-.canal-icon{font-size:36px;margin-bottom:14px;}
-.canal-name{font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;color:var(--ink);margin-bottom:4px;}
-.canal-detail{font-size:13px;color:var(--muted);font-weight:300;margin-bottom:14px;line-height:1.5;}
-.canal-cta{display:inline-flex;align-items:center;gap:6px;font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;color:var(--t);border:1.5px solid var(--t);padding:7px 16px;border-radius:20px;transition:all .2s;}
-.canal-card:hover .canal-cta{background:var(--t);color:white;}
+.page-hero{padding:calc(var(--nav-h) + 60px) 5% 60px;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.18) 0%,transparent 70%);pointer-events:none;}
+.page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:16px;}
+.breadcrumb a{color:rgba(255,255,255,0.5);}
+.page-hero h1{font-family:'Nunito',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:900;color:white;margin-bottom:14px;line-height:1.15;}
+.page-hero p{font-size:15px;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.7;margin-bottom:24px;max-width:500px;}
+.hero-trust{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.8);}
+.trust-icon{width:32px;height:32px;background:rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.hero-stats-row{display:flex;gap:28px;flex-wrap:wrap;}
+.h-stat-num{font-family:'Nunito',sans-serif;font-size:26px;font-weight:900;color:white;}
+.h-stat-num span{color:var(--tl);}
+.h-stat-lbl{font-size:11px;color:rgba(255,255,255,0.55);}
+
+.canales{padding:48px 5%;background:var(--bg);}
+.canales-inner{max-width:1100px;margin:0 auto;}
+.canales-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.canal-card{background:white;border:1px solid var(--border);border-radius:16px;padding:20px 16px;text-align:center;transition:all .25s;}
+.canal-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(111,28,175,0.1);border-color:var(--t);}
+.canal-icon{font-size:28px;margin-bottom:10px;}
+.canal-name{font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:var(--ink);margin-bottom:3px;}
+.canal-detail{font-size:12px;color:var(--muted);font-weight:300;margin-bottom:12px;line-height:1.5;}
+.canal-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:700;color:var(--t);border:1.5px solid var(--t);padding:6px 14px;border-radius:20px;transition:all .2s;}
+.canal-card:hover .canal-btn{background:var(--t);color:white;}
 @media(max-width:800px){.canales-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:450px){.canales-grid{grid-template-columns:1fr;}}
 
-/* COTIZADOR */
 .cotizador-section{padding:72px 5%;background:linear-gradient(135deg,var(--pd) 0%,var(--p) 50%,#8B35C8 100%);position:relative;overflow:hidden;}
 .cotizador-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(43,191,164,0.15) 0%,transparent 70%);pointer-events:none;}
-.cotizador-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.cot-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
 .cot-header{text-align:center;margin-bottom:44px;}
-.cot-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--tl);margin-bottom:12px;}
-.cot-h2{font-family:'Nunito',sans-serif;font-size:clamp(26px,4vw,40px);font-weight:900;color:white;margin-bottom:12px;line-height:1.2;}
-.cot-sub{font-size:15px;color:rgba(255,255,255,0.7);font-weight:300;line-height:1.7;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.section-tag-light{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--tl);margin-bottom:12px;}
+.cot-h2{font-family:'Nunito',sans-serif;font-size:clamp(24px,4vw,38px);font-weight:900;color:white;line-height:1.2;margin-bottom:12px;}
+.cot-sub{font-size:15px;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.7;}
+
+.gform-wrap{background:rgba(255,255,255,0.07);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:40px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-row.one{grid-template-columns:1fr;}
 .form-group{display:flex;flex-direction:column;gap:6px;}
-.form-group.full{grid-column:span 3;}
-.form-group.two{grid-column:span 2;}
 .form-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.6);}
+.form-label .req{color:var(--tl);}
 .form-input,.form-select,.form-textarea{padding:13px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.1);color:white;font-family:'Lato',sans-serif;font-size:14px;backdrop-filter:blur(8px);transition:all .2s;outline:none;}
 .form-input::placeholder,.form-textarea::placeholder{color:rgba(255,255,255,0.4);}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--t);background:rgba(255,255,255,0.15);}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--t);background:rgba(255,255,255,0.15);box-shadow:0 0 0 3px rgba(43,191,164,0.15);}
 .form-select option{background:var(--pd);color:white;}
 .form-textarea{min-height:80px;resize:vertical;}
-.form-submit{width:100%;padding:16px;background:var(--t);color:white;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(43,191,164,0.35);}
-.form-submit:hover{background:var(--td);transform:translateY(-2px);}
+.form-input.error,.form-select.error{border-color:#ff8888;}
+.error-msg{font-size:11px;color:#ffaaaa;margin-top:2px;display:none;}
+.error-msg.show{display:block;}
+.btn-submit{width:100%;padding:17px;background:var(--t);color:white;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 20px rgba(43,191,164,0.4);margin-top:20px;}
+.btn-submit:hover{background:var(--td);transform:translateY(-2px);}
+.btn-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
 .form-note{text-align:center;margin-top:14px;font-size:12px;color:rgba(255,255,255,0.45);display:flex;align-items:center;justify-content:center;gap:6px;}
-@media(max-width:700px){.form-grid{grid-template-columns:1fr 1fr;}.form-group.full,.form-group.two{grid-column:span 2;}}
-@media(max-width:480px){.form-grid{grid-template-columns:1fr;}.form-group.full,.form-group.two{grid-column:span 1;}}
+.success-state{display:none;text-align:center;padding:48px 32px;}
+.success-state.show{display:block;}
+.success-icon{font-size:64px;margin-bottom:20px;}
+.success-title{font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;color:white;margin-bottom:12px;}
+.success-sub{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:28px;}
+.success-wa{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;padding:14px 28px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;transition:all .2s;}
+.success-wa:hover{transform:translateY(-2px);}
 
-/* HORARIO */
-.horario{padding:56px 5%;background:white;}
-.horario-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-.horario-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:32px;}
-.horario-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);}
-.horario-row:last-child{border:none;}
+.horario-section{padding:64px 5%;background:white;}
+.horario-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.section-tag-color{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:12px;}
+.horario-h2{font-family:'Nunito',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--ink);margin-bottom:14px;line-height:1.2;}
+.horario-sub{font-size:15px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:28px;}
+.wa-big{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;padding:13px 26px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;transition:all .2s;box-shadow:0 4px 16px rgba(37,211,102,0.4);}
+.wa-big:hover{transform:translateY(-2px);}
+.horario-card{background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:28px;}
+.horario-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border);}
+.horario-row:last-of-type{border:none;}
 .horario-day{font-size:14px;font-weight:600;color:var(--ink);}
+.horario-info{display:flex;align-items:center;gap:8px;}
 .horario-time{font-size:13px;color:var(--muted);font-weight:300;}
-.horario-open{font-size:11px;font-weight:700;color:var(--t);background:rgba(43,191,164,0.1);padding:2px 8px;border-radius:20px;}
-.horario-closed{font-size:11px;font-weight:700;color:var(--muted);background:rgba(122,107,144,0.1);padding:2px 8px;border-radius:20px;}
-.horario-note{display:flex;align-items:flex-start;gap:12px;margin-top:16px;padding:14px;background:rgba(43,191,164,0.08);border:1px solid rgba(43,191,164,0.15);border-radius:10px;}
-.horario-note-icon{font-size:20px;flex-shrink:0;}
-.horario-note p{font-size:13px;color:var(--ink);font-weight:300;line-height:1.6;}
-.section-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--t);margin-bottom:12px;}
-.section-h2{font-family:'Nunito',sans-serif;font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--ink);margin-bottom:14px;line-height:1.2;}
-.section-sub{font-size:15px;color:var(--muted);font-weight:300;line-height:1.7;margin-bottom:28px;}
+.badge-open{font-size:10px;font-weight:700;color:#085041;background:#E1F5EE;padding:2px 8px;border-radius:20px;}
+.badge-wa{font-size:10px;font-weight:700;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
+.horario-note{display:flex;align-items:flex-start;gap:10px;margin-top:16px;padding:12px 14px;background:rgba(43,191,164,0.06);border:1px solid rgba(43,191,164,0.15);border-radius:10px;}
+.horario-note p{font-size:12px;color:var(--ink);font-weight:300;line-height:1.6;}
 @media(max-width:700px){.horario-inner{grid-template-columns:1fr;}}
 
 footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255,255,0.05);}
-.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-inner{max-width:1100px;margin:0 auto;}
 .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:24px;}
-.footer-logo-row{font-family:'Nunito',sans-serif;font-size:24px;font-weight:900;margin-bottom:10px;display:flex;align-items:center;gap:3px;}
+.footer-logo-wrap{font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;display:flex;align-items:center;margin-bottom:10px;}
+.footer-logo-wrap .logo-go,.footer-logo-wrap .logo-trip{color:white;font-size:24px;}
+.footer-logo-wrap .logo-pin::before{background:var(--t);}
+.footer-logo-wrap .logo-pin::after{background:#0A0510;}
+.footer-logo-wrap .logo-mx{color:var(--muted);font-size:14px;}
 .footer-slogan{font-size:13px;color:rgba(255,255,255,0.38);font-weight:300;line-height:1.6;margin-bottom:18px;}
 .footer-social{display:flex;gap:8px;}
-.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;cursor:pointer;text-decoration:none;}
+.social-btn{width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;color:rgba(255,255,255,0.55);transition:all .2s;text-decoration:none;}
 .social-btn:hover{background:var(--p);border-color:var(--p);color:white;}
 .footer-col h4{font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
@@ -113,113 +137,263 @@ footer{background:#0A0510;padding:60px 5% 28px;border-top:1px solid rgba(255,255
 .footer-bottom a:hover{color:var(--tl);}
 @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr;}}
 @media(max-width:480px){.footer-top{grid-template-columns:1fr;}}
-.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;}
-.float-chat{position:fixed;bottom:28px;left:28px;z-index:200;width:56px;height:56px;background:linear-gradient(135deg,var(--p),var(--t));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(111,28,175,0.4);cursor:pointer;transition:all .25s;}
+
+.float-wa{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px rgba(37,211,102,0.5);cursor:pointer;transition:all .25s;animation:pulse-wa 2.5s ease infinite;text-decoration:none;}
+.float-wa:hover{transform:scale(1.1);}
 @keyframes pulse-wa{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.4);}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7);}}
+.reveal{opacity:0;transform:translateY(28px);transition:all .6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+@media(max-width:700px){.form-row{grid-template-columns:1fr;}.gform-wrap{padding:24px 18px;}}
 </style>
 </head>
 <body>
+
 <nav id="navbar">
-  <div class="nav-logo-text"><span class="go">GO</span><span class="pin">📍</span><span class="trip">trip</span><span class="mx">MX</span></div>
-  <ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contacto.html" class="active">Contacto</a></li></ul>
+  <a href="index.html" class="logo-mark"><span class="logo-go">GO</span><span class="logo-pin"></span><span class="logo-trip">trip</span><span class="logo-mx">MX</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="circuitos.html">Circuitos</a></li>
+    <li><a href="resenas.html">Reseñas</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contacto.html" class="active">Contacto</a></li>
+  </ul>
   <a href="#cotizador" class="nav-cta">✈ Cotizar viaje</a>
   <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><a href="index.html">🏠 Inicio</a><a href="nosotros.html">👥 Nosotros</a><a href="circuitos.html">🗺️ Circuitos</a><a href="resenas.html">⭐ Reseñas</a><a href="blog.html">📰 Blog</a><a href="faq.html">❓ FAQ</a><a href="contacto.html">📞 Contacto</a><a href="#cotizador">✈ Cotizar viaje</a></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Inicio</a><a href="nosotros.html">👥 Nosotros</a><a href="circuitos.html">🗺️ Circuitos</a>
+  <a href="resenas.html">⭐ Reseñas</a><a href="blog.html">📰 Blog</a><a href="faq.html">❓ FAQ</a>
+  <a href="#cotizador">✈ Cotizar viaje</a>
+</div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="breadcrumb"><a href="index.html">Inicio</a><span> › </span><span>Contáctanos</span></div>
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span> › </span><span>Contacto</span></div>
     <h1>Estamos para ti</h1>
-    <p>Elige cómo prefieres comunicarte. Respondemos en menos de 2 horas por WhatsApp y en 24 horas por email.</p>
+    <p>Elige cómo prefieres contactarnos. Respondemos en menos de 2 horas por WhatsApp y en 24 horas por email.</p>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-icon">⚡</div>Respuesta garantizada en menos de 24 horas</div>
+      <div class="trust-item"><div class="trust-icon">🛡️</div>Sin costo ni compromiso de compra</div>
+      <div class="trust-item"><div class="trust-icon">🤝</div>Un asesor dedicado para tu viaje</div>
+    </div>
+    <div class="hero-stats-row">
+      <div><div class="h-stat-num">500<span>+</span></div><div class="h-stat-lbl">Viajeros atendidos</div></div>
+      <div><div class="h-stat-num">4.9<span>/5</span></div><div class="h-stat-lbl">Calificación promedio</div></div>
+      <div><div class="h-stat-num">24<span>/7</span></div><div class="h-stat-lbl">Emergencias en viaje</div></div>
+    </div>
   </div>
 </div>
 
-<!-- CANALES DE CONTACTO -->
 <section class="canales">
   <div class="canales-inner">
-    <div class="canales-grid">
-      <div class="canal-card reveal">
-        <div class="canal-icon">💬</div>
-        <div class="canal-name">WhatsApp</div>
-        <div class="canal-detail">+52 56 4913 9445<br>Respuesta inmediata</div>
-        <a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20me%20interesa%20cotizar%20un%20viaje" target="_blank" class="canal-cta">Escribir ahora →</a>
-      </div>
-      <div class="canal-card reveal">
-        <div class="canal-icon">✉</div>
-        <div class="canal-name">Email</div>
-        <div class="canal-detail">ventas@gotripmx.com<br>Respuesta en 24h</div>
-        <a href="mailto:ventas@gotripmx.com" class="canal-cta">Enviar email →</a>
-      </div>
-      <div class="canal-card reveal">
-        <div class="canal-icon">📸</div>
-        <div class="canal-name">Instagram</div>
-        <div class="canal-detail">@gotrip_mx<br>DMs y stories</div>
-        <a href="https://www.instagram.com/gotrip_mx" target="_blank" class="canal-cta">Seguir →</a>
-      </div>
-      <div class="canal-card reveal">
-        <div class="canal-icon">📋</div>
-        <div class="canal-name">Cotización</div>
-        <div class="canal-detail">Formulario completo<br>Respuesta personalizada</div>
-        <a href="#cotizador" class="canal-cta">Ir al formulario →</a>
-      </div>
+    <div class="canales-grid reveal">
+      <div class="canal-card"><div class="canal-icon">💬</div><div class="canal-name">WhatsApp</div><div class="canal-detail">+52 56 4913 9445<br>Respuesta inmediata</div><a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX,%20me%20interesa%20cotizar%20un%20viaje" target="_blank" class="canal-btn">Escribir ahora →</a></div>
+      <div class="canal-card"><div class="canal-icon">✉</div><div class="canal-name">Email</div><div class="canal-detail">ventas@gotripmx.com<br>Respuesta en 24h</div><a href="mailto:ventas@gotripmx.com" class="canal-btn">Enviar email →</a></div>
+      <div class="canal-card"><div class="canal-icon">📸</div><div class="canal-name">Instagram</div><div class="canal-detail">@gotrip_mx<br>DMs y stories</div><a href="https://www.instagram.com/gotrip_mx" target="_blank" class="canal-btn">Seguir →</a></div>
+      <div class="canal-card"><div class="canal-icon">📋</div><div class="canal-name">Formulario</div><div class="canal-detail">Cotización detallada<br>Propuesta personalizada</div><a href="#cotizador" class="canal-btn">Ir al formulario →</a></div>
     </div>
   </div>
 </section>
 
-<!-- COTIZADOR COMPLETO -->
 <section class="cotizador-section" id="cotizador">
-  <div class="cotizador-inner">
+  <div class="cot-inner">
     <div class="cot-header reveal">
-      <div class="cot-tag">Sin costo · Sin compromiso</div>
+      <div class="section-tag-light">Sin costo · Sin compromiso</div>
       <h2 class="cot-h2">Cotiza tu viaje ahora</h2>
-      <p class="cot-sub">Cuéntanos todos los detalles y te enviaremos una propuesta personalizada en menos de 24 horas.</p>
+      <p class="cot-sub">Cuéntanos todos los detalles. Te enviamos una propuesta personalizada en menos de 24 horas.</p>
     </div>
-    <div class="form-grid reveal">
-      <div class="form-group"><label class="form-label">Nombre completo *</label><input type="text" class="form-input" placeholder="Tu nombre" required></div>
-      <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" placeholder="correo@ejemplo.com" required></div>
-      <div class="form-group"><label class="form-label">WhatsApp *</label><input type="tel" class="form-input" placeholder="55 1234 5678" required></div>
-      <div class="form-group two"><label class="form-label">¿A dónde quieres ir? *</label><input type="text" class="form-input" placeholder="Ej. Italia, Cancún, Crucero Caribe, Japón…" required></div>
-      <div class="form-group"><label class="form-label">Tipo de servicio</label><select class="form-select"><option>Paquete completo</option><option>Solo vuelos</option><option>Solo hotel</option><option>Circuito</option><option>Crucero</option><option>Experiencias</option><option>Viaje a la medida</option><option>Grupo / Empresarial</option></select></div>
-      <div class="form-group"><label class="form-label">Fecha de viaje</label><input type="month" class="form-input"></div>
-      <div class="form-group"><label class="form-label">Regreso aproximado</label><input type="month" class="form-input"></div>
-      <div class="form-group"><label class="form-label">Número de viajeros</label><select class="form-select"><option>1 viajero</option><option>2 viajeros</option><option>3–4 viajeros</option><option>5–10 viajeros</option><option>Grupo de 10+</option></select></div>
-      <div class="form-group"><label class="form-label">Presupuesto aproximado</label><select class="form-select"><option>Menos de $15,000 MXN/persona</option><option>$15,000 – $30,000 MXN/persona</option><option>$30,000 – $60,000 MXN/persona</option><option>Más de $60,000 MXN/persona</option><option>Prefiero no especificar</option></select></div>
-      <div class="form-group full"><label class="form-label">Cuéntanos más (opcional)</label><textarea class="form-textarea" placeholder="Luna de miel, primera vez en Europa, ¿algo especial que quieras incluir? ¿alguna restricción alimentaria o de movilidad? Todo ayuda para darte la mejor propuesta."></textarea></div>
-      <div class="form-group full"><button class="form-submit" onclick="submitCotizacion()">✈ Enviar solicitud de cotización</button></div>
+    <div class="gform-wrap reveal">
+      <div id="formState">
+        <form id="cotizadorForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nombre completo <span class="req">*</span></label>
+              <input type="text" class="form-input" id="f-nombre" name="entry.813242491" placeholder="Tu nombre completo" required>
+              <span class="error-msg" id="err-nombre">Por favor ingresa tu nombre</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp <span class="req">*</span></label>
+              <input type="tel" class="form-input" id="f-whatsapp" name="entry.642752066" placeholder="55 1234 5678" required>
+              <span class="error-msg" id="err-whatsapp">Por favor ingresa tu número de WhatsApp</span>
+            </div>
+          </div>
+          <div class="form-row one">
+            <div class="form-group">
+              <label class="form-label">Email <span class="req">*</span></label>
+              <input type="email" class="form-input" id="f-email" name="entry.1319653050" placeholder="correo@ejemplo.com" required>
+              <span class="error-msg" id="err-email">Por favor ingresa un email válido</span>
+            </div>
+          </div>
+          <div class="form-row one">
+            <div class="form-group">
+              <label class="form-label">¿A dónde quieres viajar? <span class="req">*</span></label>
+              <input type="text" class="form-input" id="f-destino" name="entry.556509502" placeholder="Ej. Italia, Cancún, Crucero Caribe, Japón…" required>
+              <span class="error-msg" id="err-destino">Por favor escribe tu destino de interés</span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Tipo de viaje <span class="req">*</span></label>
+              <select class="form-select" id="f-tipo" name="entry.1822863131" required>
+                <option value="">Selecciona…</option>
+                <option>Paquete completo</option>
+                <option>Solo vuelos</option>
+                <option>Solo hotel</option>
+                <option>Crucero</option>
+                <option>Viaje a la medida</option>
+                <option>Grupo empresarial</option>
+              </select>
+              <span class="error-msg" id="err-tipo">Por favor selecciona el tipo de viaje</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">¿Cuándo quieres viajar?</label>
+              <select class="form-select" name="entry.553001196">
+                <option value="">Fecha aproximada…</option>
+                <option>Mayo 2025</option><option>Junio 2025</option><option>Julio 2025</option>
+                <option>Agosto 2025</option><option>Septiembre 2025</option><option>Octubre 2025</option>
+                <option>Noviembre 2025</option><option>Diciembre 2025</option>
+                <option>Enero 2026</option><option>Febrero 2026</option><option>Marzo 2026</option>
+                <option>Abril 2026</option><option>Mayo 2026</option><option>Junio 2026</option>
+                <option>Julio 2026</option><option>Agosto 2026</option><option>Septiembre 2026</option>
+                <option>Octubre 2026</option><option>Noviembre 2026</option><option>Diciembre 2026</option>
+                <option>Aún no lo sé</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Número de viajeros <span class="req">*</span></label>
+              <select class="form-select" id="f-viajeros" name="entry.1790545503" required>
+                <option value="">Selecciona…</option>
+                <option>1 viajero</option>
+                <option>2 viajeros</option>
+                <option>3-4 viajeros</option>
+                <option>5-10 viajeros</option>
+                <option>Grupo de 10+</option>
+              </select>
+              <span class="error-msg" id="err-viajeros">Por favor selecciona el número de viajeros</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Presupuesto por persona</label>
+              <select class="form-select" name="entry.391987847">
+                <option value="">Selecciona…</option>
+                <option>Menos de $15,000 MXN</option>
+                <option>$15,000 - $30,000 MXN</option>
+                <option>$30,000 - $60,000 MXN</option>
+                <option>Más de $60,000 MXN</option>
+                <option>Prefiero no especificar</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row one">
+            <div class="form-group">
+              <label class="form-label">¿Algo especial que debamos saber?</label>
+              <textarea class="form-textarea" name="entry.391987847_year" placeholder="Luna de miel, primera vez en Europa, cumpleaños, necesidades especiales, presupuesto específico…"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span id="submitText">✈ Enviar solicitud de cotización</span>
+            <span id="submitLoader" style="display:none;">⏳ Enviando…</span>
+          </button>
+        </form>
+        <p class="form-note">🔒 Tus datos están protegidos · Sin costo ni compromiso · Respondemos en menos de 24h</p>
+      </div>
+      <div class="success-state" id="successState">
+        <div class="success-icon">✈</div>
+        <div class="success-title">¡Solicitud recibida!</div>
+        <div class="success-sub">Gracias por contactarnos. Un asesor de GOTRIP MX revisará tu solicitud y te contactará en menos de 24 horas por WhatsApp con una propuesta personalizada.</div>
+        <a href="https://wa.me/5215649139445?text=Hola!%20Acabo%20de%20enviar%20una%20cotización%20en%20su%20sitio%20web" target="_blank" class="success-wa">💬 También puedes escribirnos directo</a>
+      </div>
     </div>
-    <p class="form-note">🔒 Tus datos están protegidos · Respondemos en menos de 24 horas · Sin compromiso de compra</p>
   </div>
 </section>
 
-<!-- HORARIOS -->
-<section class="horario">
+<section class="horario-section">
   <div class="horario-inner">
     <div class="reveal">
-      <div class="section-tag">Disponibilidad</div>
-      <h2 class="section-h2">Horarios de atención</h2>
-      <p class="section-sub">Nuestro equipo está listo para atenderte. Para emergencias durante tu viaje, tenemos línea 24/7.</p>
-      <a href="https://wa.me/5215649139445" target="_blank" style="background:var(--t);color:white;padding:12px 24px;border-radius:50px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:all .2s;">💬 WhatsApp directo</a>
+      <div class="section-tag-color">Disponibilidad del equipo</div>
+      <h2 class="horario-h2">Horarios de atención</h2>
+      <p class="horario-sub">Para emergencias durante tu viaje tenemos línea disponible las 24 horas. Para nuevas consultas, nuestro equipo te atiende en estos horarios.</p>
+      <a href="https://wa.me/5215649139445" target="_blank" class="wa-big">💬 WhatsApp directo</a>
     </div>
     <div class="reveal">
       <div class="horario-card">
-        <div class="horario-row"><span class="horario-day">Lunes – Viernes</span><div style="display:flex;align-items:center;gap:8px;"><span class="horario-time">9:00 – 19:00</span><span class="horario-open">Abierto</span></div></div>
-        <div class="horario-row"><span class="horario-day">Sábado</span><div style="display:flex;align-items:center;gap:8px;"><span class="horario-time">10:00 – 15:00</span><span class="horario-open">Abierto</span></div></div>
-        <div class="horario-row"><span class="horario-day">Domingo</span><div style="display:flex;align-items:center;gap:8px;"><span class="horario-time">Solo emergencias</span><span class="horario-closed">WhatsApp</span></div></div>
-        <div class="horario-note"><div class="horario-note-icon">🤖</div><p>Nuestro chatbot responde preguntas frecuentes <strong>las 24 horas</strong>, todos los días. Para consultas urgentes fuera de horario, también puedes escribir a WhatsApp.</p></div>
+        <div class="horario-row"><span class="horario-day">Lunes – Viernes</span><div class="horario-info"><span class="horario-time">9:00 – 19:00</span><span class="badge-open">Abierto</span></div></div>
+        <div class="horario-row"><span class="horario-day">Sábado</span><div class="horario-info"><span class="horario-time">10:00 – 15:00</span><span class="badge-open">Abierto</span></div></div>
+        <div class="horario-row"><span class="horario-day">Domingo</span><div class="horario-info"><span class="horario-time">Solo emergencias</span><span class="badge-wa">WhatsApp</span></div></div>
+        <div class="horario-note"><span style="font-size:18px;flex-shrink:0;">🤖</span><p>El chatbot responde preguntas frecuentes <strong>las 24 horas</strong>. Para urgencias fuera de horario, escríbenos por WhatsApp.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<footer><div class="footer-inner"><div class="footer-top"><div><div class="footer-logo-row"><span style="color:white">GO</span><span style="color:var(--t)">📍</span><span style="color:white">trip</span><span style="color:var(--muted);font-size:14px;font-weight:700;margin-left:3px;">MX</span></div><p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p><div class="footer-social"><a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a><a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a><a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a><a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a></div></div><div class="footer-col"><h4>Servicios</h4><ul class="footer-links"><li><a href="#">Vuelos</a></li><li><a href="#">Hoteles</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="#">Cruceros</a></li></ul></div><div class="footer-col"><h4>Empresa</h4><ul class="footer-links"><li><a href="nosotros.html">Nosotros</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li></ul></div><div class="footer-col"><h4>Contacto</h4><div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445</span></div><div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div><div class="f-contact-item"><span class="f-contact-icon">📍</span><span class="f-contact-text">Estado de México · 100% digital</span></div></div></div><div class="footer-bottom"><span>© 2025 GOTRIP MX · Todos los derechos reservados</span><div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a><a href="privacidad.html#terminos">Términos</a></div></div></div></footer>
-<a href="https://wa.me/5215649139445?text=Hola%20GOTRIP%20MX" target="_blank" class="float-wa">💬</a>
-<div class="float-chat" onclick="alert('Chat con IA próximamente.')">🤖</div>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-wrap"><span class="logo-go">GO</span><span class="logo-pin" style="display:inline-flex;width:22px;height:26px;position:relative;margin:0 1px;top:-1px;"><span style="content:'';width:18px;height:18px;background:var(--t);border-radius:50% 50% 50% 0;transform:rotate(-45deg);position:absolute;top:0;display:block;"></span><span style="width:7px;height:7px;background:#0A0510;border-radius:50%;position:absolute;top:5px;left:5px;display:block;"></span></span><span class="logo-trip">trip</span><span class="logo-mx">MX</span></div>
+        <p class="footer-slogan">Haz maletas, nosotros hacemos el resto.<br>Agencia de viajes digital · Estado de México</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/gotrip_mx" target="_blank" class="social-btn">📸</a>
+          <a href="https://www.facebook.com/share/187zjKmJgQ/" target="_blank" class="social-btn">👍</a>
+          <a href="https://www.tiktok.com/@gotripmx" target="_blank" class="social-btn">🎵</a>
+          <a href="https://wa.me/5215649139445" target="_blank" class="social-btn">💬</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Servicios</h4><ul class="footer-links"><li><a href="#">Vuelos</a></li><li><a href="#">Hoteles</a></li><li><a href="circuitos.html">Circuitos</a></li><li><a href="#">Cruceros</a></li><li><a href="#">Experiencias</a></li><li><a href="#">Seguro de viaje</a></li></ul></div>
+      <div class="footer-col"><h4>Empresa</h4><ul class="footer-links"><li><a href="nosotros.html">Nosotros</a></li><li><a href="resenas.html">Reseñas</a></li><li><a href="blog.html">Blog</a></li><li><a href="faq.html">FAQ</a></li><li><a href="privacidad.html">Privacidad</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><div class="f-contact-item"><span class="f-contact-icon">📱</span><span class="f-contact-text">+52 56 4913 9445</span></div><div class="f-contact-item"><span class="f-contact-icon">✉</span><span class="f-contact-text">ventas@gotripmx.com</span></div><div class="f-contact-item"><span class="f-contact-icon">📍</span><span class="f-contact-text">Estado de México · 100% digital</span></div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 GOTRIP MX · Todos los derechos reservados</span><div style="display:flex;gap:16px;"><a href="privacidad.html">Aviso de Privacidad</a><a href="privacidad.html#terminos">Términos</a></div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5215649139445" target="_blank" class="float-wa">💬</a>
+
 <script>
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',scrollY>40));
 const observer=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-function submitCotizacion(){alert('¡Gracias! Tu solicitud fue enviada. Un asesor de GOTRIP MX te contactará en menos de 24 horas. ✈💜');}
+
+const FORM_ACTION='https://docs.google.com/forms/u/0/d/e/1FAIpQLSfOIAt67PA7dM1iWpy9bzvId-vJvGVtNC1v540cESjJZIn4mg/formResponse';
+
+document.getElementById('cotizadorForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const fields=[
+    {id:'f-nombre',err:'err-nombre',check:v=>v.trim().length>1},
+    {id:'f-whatsapp',err:'err-whatsapp',check:v=>v.trim().length>7},
+    {id:'f-email',err:'err-email',check:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'f-destino',err:'err-destino',check:v=>v.trim().length>1},
+    {id:'f-tipo',err:'err-tipo',check:v=>v!==''},
+    {id:'f-viajeros',err:'err-viajeros',check:v=>v!==''},
+  ];
+  let valid=true;
+  fields.forEach(f=>{
+    const input=document.getElementById(f.id);
+    const errEl=document.getElementById(f.err);
+    if(!f.check(input.value)){input.classList.add('error');errEl.classList.add('show');valid=false;}
+    else{input.classList.remove('error');errEl.classList.remove('show');}
+  });
+  if(!valid){document.querySelector('.form-input.error,.form-select.error').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const btn=document.getElementById('submitBtn');
+  document.getElementById('submitText').style.display='none';
+  document.getElementById('submitLoader').style.display='inline';
+  btn.disabled=true;
+  try{await fetch(FORM_ACTION,{method:'POST',mode:'no-cors',body:new FormData(this)});}catch(err){}
+  document.getElementById('formState').style.display='none';
+  document.getElementById('successState').classList.add('show');
+  document.getElementById('successState').scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+document.querySelectorAll('.form-input,.form-select').forEach(el=>{
+  el.addEventListener('input',function(){
+    this.classList.remove('error');
+    const errEl=document.getElementById('err-'+this.id.replace('f-',''));
+    if(errEl)errEl.classList.remove('show');
+  });
+});
 </script>
 </body>
 </html>
