@@ -359,14 +359,23 @@ document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 const FORM_ACTION='https://docs.google.com/forms/u/0/d/e/1FAIpQLSfOIAt67PA7dM1iWpy9bzvId-vJvGVtNC1v54OcESjJZIn4mg/formResponse';
 
-document.getElementById('cotizadorForm').addEventListener('submit',async function(e){
+// Iframe oculto para recibir la respuesta de Google Forms sin redirección
+const iframe = document.createElement('iframe');
+iframe.name = 'hidden_iframe';
+iframe.id = 'hidden_iframe';
+iframe.style.display = 'none';
+document.body.appendChild(iframe);
+
+document.getElementById('cotizadorForm').addEventListener('submit', function(e){
   e.preventDefault();
+
+  // Validación
   const fields=[
-    {id:'f-nombre',err:'err-nombre',check:v=>v.trim().length>1},
+    {id:'f-nombre',  err:'err-nombre',  check:v=>v.trim().length>1},
     {id:'f-whatsapp',err:'err-whatsapp',check:v=>v.trim().length>7},
-    {id:'f-email',err:'err-email',check:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
-    {id:'f-destino',err:'err-destino',check:v=>v.trim().length>1},
-    {id:'f-tipo',err:'err-tipo',check:v=>v!==''},
+    {id:'f-email',   err:'err-email',   check:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+    {id:'f-destino', err:'err-destino', check:v=>v.trim().length>1},
+    {id:'f-tipo',    err:'err-tipo',    check:v=>v!==''},
     {id:'f-viajeros',err:'err-viajeros',check:v=>v!==''},
   ];
   let valid=true;
@@ -376,15 +385,29 @@ document.getElementById('cotizadorForm').addEventListener('submit',async functio
     if(!f.check(input.value)){input.classList.add('error');errEl.classList.add('show');valid=false;}
     else{input.classList.remove('error');errEl.classList.remove('show');}
   });
-  if(!valid){document.querySelector('.form-input.error,.form-select.error').scrollIntoView({behavior:'smooth',block:'center'});return;}
-  const btn=document.getElementById('submitBtn');
+  if(!valid){
+    document.querySelector('.form-input.error,.form-select.error')
+      .scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+
+  // Mostrar loader
   document.getElementById('submitText').style.display='none';
   document.getElementById('submitLoader').style.display='inline';
-  btn.disabled=true;
-  try{await fetch(FORM_ACTION,{method:'POST',mode:'no-cors',body:new FormData(this)});}catch(err){}
-  document.getElementById('formState').style.display='none';
-  document.getElementById('successState').classList.add('show');
-  document.getElementById('successState').scrollIntoView({behavior:'smooth',block:'center'});
+  document.getElementById('submitBtn').disabled=true;
+
+  // Apuntar el form al iframe oculto y enviar normalmente (sin fetch)
+  this.action  = FORM_ACTION;
+  this.method  = 'POST';
+  this.target  = 'hidden_iframe';
+  this.submit();
+
+  // Mostrar pantalla de éxito después de 1.5s (tiempo para que el iframe cargue)
+  setTimeout(()=>{
+    document.getElementById('formState').style.display='none';
+    document.getElementById('successState').classList.add('show');
+    document.getElementById('successState').scrollIntoView({behavior:'smooth',block:'center'});
+  }, 1500);
 });
 
 document.querySelectorAll('.form-input,.form-select').forEach(el=>{
